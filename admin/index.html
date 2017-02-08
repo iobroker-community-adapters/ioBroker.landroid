@@ -6,32 +6,48 @@
 <script type="text/javascript" src="../../socket.io/socket.io.js"></script>
 <script type="text/javascript" src="../../lib/js/jquery-ui-1.10.3.full.min.js"></script>
 
-
-<!-- optional: use jqGrid
-<link rel="stylesheet" type="text/css" href="../../lib/css/jqGrid/ui.jqgrid-4.5.4.css"/>
-<script type="text/javascript" src="../../lib/js/jqGrid/jquery.jqGrid-4.5.4.min.js"></script>
-<script type="text/javascript" src="../../lib/js/jqGrid/i18n/grid.locale-all.js"></script>
--->
-
-<!-- optional: use multiselect
-<link rel="stylesheet" type="text/css" href="../../lib/css/jquery.multiselect-1.13.css"/>
-<script type="text/javascript" src="../../lib/js/jquery.multiselect-1.13.min.js"></script>
--->
-
 <!-- these two file always have to be included -->
 <link rel="stylesheet" type="text/css" href="../../css/adapter.css"/>
 <script type="text/javascript" src="../../js/translate.js"></script>
 <script type="text/javascript" src="../../js/adapter-settings.js"></script>
-
 
 <!-- you have to define 2 functions in the global scope: -->
 <script type="text/javascript">
 
     // Dictionary (systemDictionary is global variable from adapter-settings.js)
     systemDictionary = {
-        "template adapter settings": {"de": "Beispiel", "ru": "Пример"},
-        "test1":                    {"en": "Test 1", "de": "Test 1", "ru": "Тест 1"},
-        "test2":                    {"en": "Test 2", "de": "Test 2", "ru": "Тест 2"},
+        "WORX Landroid adapter settings": {
+            "de": "WORX Landroid Einstellungen",
+            "ru": "WORX Landroid Настройки"
+        },
+        "IP": {
+            "de": "IP Adresse des Worx Landroid Rasenmähers",
+            "en": "IP address of the Worx Landroid lawn mower",
+            "ru": "IP-адрес газонокосилки Worx Landroid"
+        },
+        "pinCode": {
+            "de": "Vierstellige PIN des Rasenmähers",
+            "en": "Four-digit PIN of lawn mower",
+            "ru": "Четыре-значный PIN-код газонокосилки"
+        },
+        "Intervall": {
+            "de": "Abfrageintervall in Sekunden",
+            "en": "Query interval in seconds",
+            "ru": "Интервал запроса в секундах"
+        },
+        "pollError": {
+            "de": "Zeit zwischen 1 und 60 Sekunden wählen",
+            "en": "Select a time between 1 and 60 seconds",
+            "ru": "Выберите от 1 до 60 секунд"
+        },
+        "Settings": {
+            "de": "Einstellungen",
+            "ru": "настройки"
+        },
+        "Info": {
+            "de": "Hinweis",
+            "ru": "намек"
+        },
         "on save adapter restarts with new config immediately": {
             "de": "Beim Speichern von Einstellungen der Adapter wird sofort neu gestartet.",
             "ru": "Сразу после сохранения настроек драйвер перезапуститься с новыми значениями"
@@ -43,16 +59,17 @@
         // example: select elements with id=key and class=value and insert value
         for (var key in settings) {
             // example: select elements with id=key and class=value and insert value
-            if ($('#' + key + '.value').attr('type') == 'checkbox') {
-                $('#' + key + '.value').prop('checked', settings[key]).change(function () {
-					onChange();
-				});
+            var $element = $("#" + key + ".value");
+            if ($element.attr("type") === "checkbox") {
+                $element.prop("checked", settings[key]).change(function () {
+                    onChange();
+                });
             } else {
-                $('#' + key + '.value').val(settings[key]).change(function () {
-					onChange();
-				}).keyup(function () {
-					$(this).trigger('change');
-				});
+                $element.val(settings[key]).change(function () {
+                    onChange();
+                }).keyup(function () {
+                    $(this).trigger("change");
+                });
             }
         }
         // Signal to admin, that no changes yet
@@ -64,28 +81,66 @@
     function save(callback) {
         // example: select elements with class=value and build settings object
         var obj = {};
-        $('.value').each(function () {
+        $(".value").each(function () {
             var $this = $(this);
-            obj[$this.attr('id')] = $this.val();
+            obj[$this.attr("id")] = $this.val();
         });
         callback(obj);
     }
+
+    $('#poll').on('blur', function(){
+        var value = $(this).val();
+        if(!value.match(/^\d+$/) || value < 1 || value > 60){
+            $('#poll_error').show();
+        }
+    });
 </script>
 
 <!-- you have to put your config page in a div with id adapter-container -->
-<div id="adapter-container">
+<div id="adapter-container" style="padding-left: 6px; padding-right: 0px; width: 97%;">
 
-    <table><tr>
-        <td><img src="template.png"/></td>
-        <td><h3 class="translate">template adapter settings</h3></td>
-    </tr></table>
-    <p>
-        <span class="translate">test1</span> <input class="value" id="test1"/><br>
-        <span class="translate">test2</span> <input class="value" id="test2"/><br>
-    </p>
+    <table>
+        <tr>
+            <td><img src="landroid.png"/></td>
+            <td style="padding-top: 20px;padding-left: 10px"><h3 class="translate">WORX Landroid adapter settings</h3>
+            </td>
+        </tr>
+    </table>
 
-    <p class="translate">on save adapter restarts with new config immediately</p>
+    <h1 class="translate">Settings</h1>
 
+    <table>
+        <tr>
+            <td><label class="translate" for="ip">IP</label></td>
+            <td><input class="value" id="ip" placeholder="192.168.x.x" type="text" size="15" maxlength="11"/></td>
+        </tr>
+    </table>
+
+    <table>
+        <tr>
+            <td class="translate"><label class="translate" for="pin">pinCode</label></td>
+            <td><input class="value" id="pin" placeholder="xxxx" type="text" size="6" maxlength="4"/></td>
+        </tr>
+    </table>
+
+    <table>
+        <tr>
+            <td class="translate"><label class="translate" for="poll">Intervall</label></td>
+            <td>
+                <input class="value" id="poll" type="text" size="6" maxlength="4"/>
+                <span class="translate" id="poll_error" style="color: red; display: none;">pollError</span>
+            </td>
+        </tr>
+    </table>
+
+    <div style="padding: 10px"></div>
+    <h1 class="translate">Info</h1>
+
+    <table>
+        <tr>
+            <td class="translate">on save adapter restarts with new config immediately</td>
+        </tr>
+    </table>
 </div>
 
 </html>

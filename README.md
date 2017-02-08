@@ -1,5 +1,13 @@
-![Logo](admin/template.png)
-# ioBroker.template
+![Logo](admin/landroid.png)
+ioBroker.landroid
+=============
+
+[![NPM version](http://img.shields.io/npm/v/iobroker.landroid.svg)](https://www.npmjs.com/package/iobroker.landroid)
+[![Downloads](https://img.shields.io/npm/dm/iobroker.landroid.svg)](https://www.npmjs.com/package/iobroker.landroid)
+
+[![NPM](https://nodei.co/npm/iobroker.landroid.png?downloads=true)](https://nodei.co/npm/iobroker.landroid/)
+
+### A Worx Landroid adapter for ioBroker
 =================
 
 This adapter is a template for the creation of an ioBroker adapter. You do not need it at least that you plan developing your own adapter.

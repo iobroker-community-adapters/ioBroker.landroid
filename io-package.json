@@ -1,41 +1,1299 @@
 {
-    "common": {
-        "name":                     "template",
-        "version":                  "0.5.0",
-	    "news": {
-			"0.5.0": {
-			  "en": "beta version",
-			  "de": "Betaversion",
-			  "ru": "Бета версия"
-			},
-			"0.0.1": {
-			  "en": "initial adapter",
-			  "de": "Initiale Version",
-			  "ru": "Первоначальный адаптер"
-			}
-		},
-        "title":                    "Javascript/Node.js based template adapter",
-        "desc":                     {
-				 "en": "ioBroker template Adapter",
-				 "de": "ioBroker Template Adapter",
-				 "ru": "ioBroker Template драйвер как образец"
-		},
-        "platform":                 "Javascript/Node.js",
-        "mode":                     "daemon",
-        "icon":                     "template.png",
-        "enabled":                  true,
-		"extIcon":                  "https://raw.githubusercontent.com/ioBroker/ioBroker.template/master/admin/template.png",
-		"keywords":                 ["template", "vis", "GUI", "graphical", "scada"],
-        "readme":                   "https://github.com/ioBroker/ioBroker.template/blob/master/README.md",
-		"loglevel":                 "info",
-        "type":                     "common adapters",
-        "restartAdapters":          ["vis"]
+  "common": {
+    "name": "landroid",
+    "version": "0.0.1",
+    "news": {
+      "0.0.1": {
+        "en": "initial adapter",
+        "de": "Initiale Version",
+        "ru": "Первоначальный адаптер"
+      }
     },
-    "native": {
-        "test1": true,
-        "test2": 42
+    "title": "Javascript/Node.js based landroid adapter",
+    "desc": {
+      "en": "ioBroker Landroid Adapter",
+      "de": "ioBroker Landroid Adapter",
+      "ru": "ioBroker Landroid драйвер как образец"
     },
-    "objects": [
-
-    ]
+    "license": "MIT",
+    "platform": "Javascript/Node.js",
+    "mode": "daemon",
+    "icon": "worx.png",
+    "enabled": true,
+    "extIcon": "https://raw.githubusercontent.com/ldittmar81/ioBroker.landroid/master/admin/worx.png",
+    "keywords": [
+      "landroid",
+      "worx",
+      "vis",
+      "GUI",
+      "graphical",
+      "scada"
+    ],
+    "readme": "https://github.com/ldittmar81/ioBroker.landroid/blob/master/README.md",
+    "loglevel": "info",
+    "type": "common adapters"
+  },
+  "native": {
+    "ip": "",
+    "pin": "",
+    "poll": "5"
+  },
+  "objects": [],
+  "instanceObjects": [
+    {
+      "_id": "firmware",
+      "type": "state",
+      "common": {
+        "name": "Firmware Version",
+        "type": "string",
+        "read": true,
+        "write": false,
+        "desc": "Firmware Version"
+      },
+      "native": {}
+    },
+    {
+      "_id": "alarm",
+      "type": "channel",
+      "common": {
+        "name": "alarm",
+        "role": "alarm"
+      },
+      "native": {}
+    },
+    {
+      "_id": "alarm.0",
+      "type": "state",
+      "common": {
+        "name": "Blade blocked",
+        "type": "boolean",
+        "role": "alarm",
+        "read": true,
+        "write": false,
+        "def": false,
+        "desc": "The blade is blocked!"
+      },
+      "native": {}
+    },
+    {
+      "_id": "alarm.1",
+      "type": "state",
+      "common": {
+        "name": "Repositioning error",
+        "type": "boolean",
+        "role": "alarm",
+        "read": true,
+        "write": false,
+        "def": false,
+        "desc": "Repositioning failed!"
+      },
+      "native": {}
+    },
+    {
+      "_id": "alarm.2",
+      "type": "state",
+      "common": {
+        "name": "Outside wire",
+        "type": "boolean",
+        "role": "message",
+        "read": true,
+        "write": false,
+        "def": false,
+        "desc": "The Landroid is outside from wire!"
+      },
+      "native": {}
+    },
+    {
+      "_id": "alarm.3",
+      "type": "state",
+      "common": {
+        "name": "Blade blocked",
+        "type": "boolean",
+        "role": "alarm",
+        "read": true,
+        "write": false,
+        "def": false,
+        "desc": "The blade is blocked!"
+      },
+      "native": {}
+    },
+    {
+      "_id": "alarm.4",
+      "type": "state",
+      "common": {
+        "name": "Outside wire",
+        "type": "boolean",
+        "role": "alarm",
+        "read": true,
+        "write": false,
+        "def": false,
+        "desc": "The Landroid is outside from wire!"
+      },
+      "native": {}
+    },
+    {
+      "_id": "alarm.5",
+      "type": "state",
+      "common": {
+        "name": "Mower lifted",
+        "type": "boolean",
+        "role": "alarm",
+        "read": true,
+        "write": false,
+        "def": false,
+        "desc": "Mower lifted (Lifted up)"
+      },
+      "native": {}
+    },
+    {
+      "_id": "alarm.6",
+      "type": "state",
+      "common": {
+        "name": "error 6",
+        "type": "boolean",
+        "role": "alarm",
+        "read": true,
+        "write": false,
+        "def": false,
+        "desc": "error 6"
+      },
+      "native": {}
+    },
+    {
+      "_id": "alarm.7",
+      "type": "state",
+      "common": {
+        "name": "error 7",
+        "type": "boolean",
+        "role": "alarm",
+        "read": true,
+        "write": false,
+        "def": false,
+        "desc": "error (Set when Lifted up - Upside down?)"
+      },
+      "native": {}
+    },
+    {
+      "_id": "alarm.8",
+      "type": "state",
+      "common": {
+        "name": "error 8",
+        "type": "boolean",
+        "role": "alarm",
+        "read": true,
+        "write": false,
+        "def": false,
+        "desc": "error 8"
+      },
+      "native": {}
+    },
+    {
+      "_id": "alarm.9",
+      "type": "state",
+      "common": {
+        "name": "Collision sensor blocked",
+        "type": "boolean",
+        "role": "alarm",
+        "read": true,
+        "write": false,
+        "def": false,
+        "desc": "Collision sensor blocked"
+      },
+      "native": {}
+    },
+    {
+      "_id": "alarm.10",
+      "type": "state",
+      "common": {
+        "name": "Mower tilted",
+        "type": "boolean",
+        "role": "alarm",
+        "read": true,
+        "write": false,
+        "def": false,
+        "desc": "Mower tilted"
+      },
+      "native": {}
+    },
+    {
+      "_id": "alarm.11",
+      "type": "state",
+      "common": {
+        "name": "Charge error",
+        "type": "boolean",
+        "role": "alarm",
+        "read": true,
+        "write": false,
+        "def": false,
+        "desc": "Charge error (Set when Lifted up?)"
+      },
+      "native": {}
+    },
+    {
+      "_id": "alarm.12",
+      "type": "state",
+      "common": {
+        "name": "Battery error",
+        "type": "boolean",
+        "role": "alarm",
+        "read": true,
+        "write": false,
+        "def": false,
+        "desc": "Battery error"
+      },
+      "native": {}
+    },
+    {
+      "_id": "alarm.13",
+      "type": "state",
+      "common": {
+        "name": "error 13",
+        "type": "boolean",
+        "role": "alarm",
+        "read": true,
+        "write": false,
+        "def": false,
+        "desc": "error 13"
+      },
+      "native": {}
+    },
+    {
+      "_id": "alarm.14",
+      "type": "state",
+      "common": {
+        "name": "error 14",
+        "type": "boolean",
+        "role": "alarm",
+        "read": true,
+        "write": false,
+        "def": false,
+        "desc": "error 14"
+      },
+      "native": {}
+    },
+    {
+      "_id": "alarm.15",
+      "type": "state",
+      "common": {
+        "name": "error 15",
+        "type": "boolean",
+        "role": "alarm",
+        "read": true,
+        "write": false,
+        "def": false,
+        "desc": "error 15"
+      },
+      "native": {}
+    },
+    {
+      "_id": "alarm.16",
+      "type": "state",
+      "common": {
+        "name": "error 16",
+        "type": "boolean",
+        "role": "alarm",
+        "read": true,
+        "write": false,
+        "def": false,
+        "desc": "error 16"
+      },
+      "native": {}
+    },
+    {
+      "_id": "alarm.17",
+      "type": "state",
+      "common": {
+        "name": "error 17",
+        "type": "boolean",
+        "role": "alarm",
+        "read": true,
+        "write": false,
+        "def": false,
+        "desc": "error 17"
+      },
+      "native": {}
+    },
+    {
+      "_id": "alarm.18",
+      "type": "state",
+      "common": {
+        "name": "error 18",
+        "type": "boolean",
+        "role": "alarm",
+        "read": true,
+        "write": false,
+        "def": false,
+        "desc": "error 18"
+      },
+      "native": {}
+    },
+    {
+      "_id": "alarm.19",
+      "type": "state",
+      "common": {
+        "name": "error 19",
+        "type": "boolean",
+        "role": "alarm",
+        "read": true,
+        "write": false,
+        "def": false,
+        "desc": "error 19"
+      },
+      "native": {}
+    },
+    {
+      "_id": "alarm.20",
+      "type": "state",
+      "common": {
+        "name": "error 20",
+        "type": "boolean",
+        "role": "alarm",
+        "read": true,
+        "write": false,
+        "def": false,
+        "desc": "error 20"
+      },
+      "native": {}
+    },
+    {
+      "_id": "alarm.21",
+      "type": "state",
+      "common": {
+        "name": "error 21",
+        "type": "boolean",
+        "role": "alarm",
+        "read": true,
+        "write": false,
+        "def": false,
+        "desc": "error 21"
+      },
+      "native": {}
+    },
+    {
+      "_id": "alarm.22",
+      "type": "state",
+      "common": {
+        "name": "error 22",
+        "type": "boolean",
+        "role": "alarm",
+        "read": true,
+        "write": false,
+        "def": false,
+        "desc": "error 22"
+      },
+      "native": {}
+    },
+    {
+      "_id": "alarm.23",
+      "type": "state",
+      "common": {
+        "name": "error 23",
+        "type": "boolean",
+        "role": "alarm",
+        "read": true,
+        "write": false,
+        "def": false,
+        "desc": "error 23"
+      },
+      "native": {}
+    },
+    {
+      "_id": "alarm.24",
+      "type": "state",
+      "common": {
+        "name": "error 24",
+        "type": "boolean",
+        "role": "alarm",
+        "read": true,
+        "write": false,
+        "def": false,
+        "desc": "error 24"
+      },
+      "native": {}
+    },
+    {
+      "_id": "alarm.25",
+      "type": "state",
+      "common": {
+        "name": "error 25",
+        "type": "boolean",
+        "role": "alarm",
+        "read": true,
+        "write": false,
+        "def": false,
+        "desc": "error 25"
+      },
+      "native": {}
+    },
+    {
+      "_id": "alarm.26",
+      "type": "state",
+      "common": {
+        "name": "error 26",
+        "type": "boolean",
+        "role": "alarm",
+        "read": true,
+        "write": false,
+        "def": false,
+        "desc": "error 26"
+      },
+      "native": {}
+    },
+    {
+      "_id": "alarm.27",
+      "type": "state",
+      "common": {
+        "name": "error 27",
+        "type": "boolean",
+        "role": "alarm",
+        "read": true,
+        "write": false,
+        "def": false,
+        "desc": "error 27"
+      },
+      "native": {}
+    },
+    {
+      "_id": "alarm.28",
+      "type": "state",
+      "common": {
+        "name": "error 28",
+        "type": "boolean",
+        "role": "alarm",
+        "read": true,
+        "write": false,
+        "def": false,
+        "desc": "error 28"
+      },
+      "native": {}
+    },
+    {
+      "_id": "alarm.29",
+      "type": "state",
+      "common": {
+        "name": "error 29",
+        "type": "boolean",
+        "role": "alarm",
+        "read": true,
+        "write": false,
+        "def": false,
+        "desc": "error 29"
+      },
+      "native": {}
+    },
+    {
+      "_id": "alarm.30",
+      "type": "state",
+      "common": {
+        "name": "error 30",
+        "type": "boolean",
+        "role": "alarm",
+        "read": true,
+        "write": false,
+        "def": false,
+        "desc": "error 30"
+      },
+      "native": {}
+    },
+    {
+      "_id": "mower",
+      "type": "channel",
+      "common": {
+        "name": "mower",
+        "role": "mower info"
+      },
+      "native": {}
+    },
+    {
+      "_id": "mower.connected",
+      "type": "state",
+      "common": {
+        "name": "Landroid connected",
+        "type": "boolean",
+        "role": "mower info",
+        "read": true,
+        "write": false,
+        "def": false,
+        "desc": "Is Landroid mower connected?"
+      },
+      "native": {}
+    },
+    {
+      "_id": "mower.start",
+      "type": "state",
+      "common": {
+        "name": "Start Landroid",
+        "type": "boolean",
+        "role": "mower info",
+        "read": true,
+        "write": true,
+        "def": false,
+        "desc": "Start Landroid"
+      },
+      "native": {}
+    },
+    {
+      "_id": "mower.stop",
+      "type": "state",
+      "common": {
+        "name": "Stop Landroid",
+        "type": "boolean",
+        "role": "mower info",
+        "read": true,
+        "write": true,
+        "def": false,
+        "desc": "Stop Landroid"
+      },
+      "native": {}
+    },
+    {
+      "_id": "mower.borderCut",
+      "type": "state",
+      "common": {
+        "name": "Enable edge cutting",
+        "type": "boolean",
+        "role": "mower info",
+        "read": true,
+        "write": false,
+        "desc": "Enable edge cutting"
+      },
+      "native": {}
+    },
+    {
+      "_id": "mower.charging",
+      "type": "state",
+      "common": {
+        "name": "Landroid charging",
+        "type": "boolean",
+        "role": "mower info",
+        "read": true,
+        "write": false,
+        "desc": "Is the Landroid mower charging?"
+      },
+      "native": {}
+    },
+    {
+      "_id": "mower.chargingComplete",
+      "type": "state",
+      "common": {
+        "name": "Landroid charging complete",
+        "type": "boolean",
+        "role": "mower info",
+        "read": true,
+        "write": false,
+        "desc": "Landroid mower charging is complete"
+      },
+      "native": {}
+    },
+    {
+      "_id": "mower.batteryState",
+      "type": "state",
+      "common": {
+        "name": "Landroid battery state",
+        "type": "number",
+        "role": "mower info",
+        "read": true,
+        "write": false,
+        "desc": "Landroid mower battery state in %"
+      },
+      "native": {}
+    },
+    {
+      "_id": "mower.state",
+      "type": "channel",
+      "common": {
+        "name": "state",
+        "role": "state"
+      },
+      "native": {}
+    },
+    {
+      "_id": "mower.state.0",
+      "type": "state",
+      "common": {
+        "name": "state 0",
+        "type": "boolean",
+        "role": "state",
+        "read": true,
+        "write": false,
+        "def": false,
+        "desc": "state 0"
+      },
+      "native": {}
+    },
+    {
+      "_id": "mower.state.1",
+      "type": "state",
+      "common": {
+        "name": "state 1",
+        "type": "boolean",
+        "role": "state",
+        "read": true,
+        "write": false,
+        "def": false,
+        "desc": "state 1"
+      },
+      "native": {}
+    },
+    {
+      "_id": "mower.state.2",
+      "type": "state",
+      "common": {
+        "name": "state 2",
+        "type": "boolean",
+        "role": "message",
+        "read": true,
+        "write": false,
+        "def": false,
+        "desc": "state 2"
+      },
+      "native": {}
+    },
+    {
+      "_id": "mower.state.3",
+      "type": "state",
+      "common": {
+        "name": "state 3",
+        "type": "boolean",
+        "role": "state",
+        "read": true,
+        "write": false,
+        "def": false,
+        "desc": "state 3"
+      },
+      "native": {}
+    },
+    {
+      "_id": "mower.state.4",
+      "type": "state",
+      "common": {
+        "name": "state 4",
+        "type": "boolean",
+        "role": "state",
+        "read": true,
+        "write": false,
+        "def": false,
+        "desc": "state 4"
+      },
+      "native": {}
+    },
+    {
+      "_id": "mower.state.5",
+      "type": "state",
+      "common": {
+        "name": "in base",
+        "type": "boolean",
+        "role": "state",
+        "read": true,
+        "write": false,
+        "def": false,
+        "desc": "Landroid is in base"
+      },
+      "native": {}
+    },
+    {
+      "_id": "mower.state.6",
+      "type": "state",
+      "common": {
+        "name": "state 6",
+        "type": "boolean",
+        "role": "state",
+        "read": true,
+        "write": false,
+        "def": false,
+        "desc": "state 6"
+      },
+      "native": {}
+    },
+    {
+      "_id": "mower.state.7",
+      "type": "state",
+      "common": {
+        "name": "state 7",
+        "type": "boolean",
+        "role": "state",
+        "read": true,
+        "write": false,
+        "def": false,
+        "desc": "state 7"
+      },
+      "native": {}
+    },
+    {
+      "_id": "mower.state.8",
+      "type": "state",
+      "common": {
+        "name": "state 8",
+        "type": "boolean",
+        "role": "state",
+        "read": true,
+        "write": false,
+        "def": false,
+        "desc": "state 8"
+      },
+      "native": {}
+    },
+    {
+      "_id": "mower.state.9",
+      "type": "state",
+      "common": {
+        "name": "state 9",
+        "type": "boolean",
+        "role": "state",
+        "read": true,
+        "write": false,
+        "def": false,
+        "desc": "state 9"
+      },
+      "native": {}
+    },
+    {
+      "_id": "mower.state.10",
+      "type": "state",
+      "common": {
+        "name": "state 10",
+        "type": "boolean",
+        "role": "state",
+        "read": true,
+        "write": false,
+        "def": false,
+        "desc": "state 10"
+      },
+      "native": {}
+    },
+    {
+      "_id": "mower.state.11",
+      "type": "state",
+      "common": {
+        "name": "Landroid start",
+        "type": "boolean",
+        "role": "state",
+        "read": true,
+        "write": false,
+        "def": false,
+        "desc": "Landroid start"
+      },
+      "native": {}
+    },
+    {
+      "_id": "mower.state.12",
+      "type": "state",
+      "common": {
+        "name": "Landroid stop",
+        "type": "boolean",
+        "role": "state",
+        "read": true,
+        "write": false,
+        "def": false,
+        "desc": "Landroid stop"
+      },
+      "native": {}
+    },
+    {
+      "_id": "mower.state.13",
+      "type": "state",
+      "common": {
+        "name": "Charging completed",
+        "type": "boolean",
+        "role": "state",
+        "read": true,
+        "write": false,
+        "def": false,
+        "desc": "Charging completed"
+      },
+      "native": {}
+    },
+    {
+      "_id": "mower.state.14",
+      "type": "state",
+      "common": {
+        "name": "manuel stop",
+        "type": "boolean",
+        "role": "state",
+        "read": true,
+        "write": false,
+        "def": false,
+        "desc": "manuel stop"
+      },
+      "native": {}
+    },
+    {
+      "_id": "mower.state.15",
+      "type": "state",
+      "common": {
+        "name": "going home",
+        "type": "boolean",
+        "role": "state",
+        "read": true,
+        "write": false,
+        "def": false,
+        "desc": "going home"
+      },
+      "native": {}
+    },
+    {
+      "_id": "mower.state.16",
+      "type": "state",
+      "common": {
+        "name": "state 16",
+        "type": "boolean",
+        "role": "state",
+        "read": true,
+        "write": false,
+        "def": false,
+        "desc": "state 16"
+      },
+      "native": {}
+    },
+    {
+      "_id": "mower.state.17",
+      "type": "state",
+      "common": {
+        "name": "state 17",
+        "type": "boolean",
+        "role": "state",
+        "read": true,
+        "write": false,
+        "def": false,
+        "desc": "state 17"
+      },
+      "native": {}
+    },
+    {
+      "_id": "mower.state.18",
+      "type": "state",
+      "common": {
+        "name": "state 18",
+        "type": "boolean",
+        "role": "state",
+        "read": true,
+        "write": false,
+        "def": false,
+        "desc": "state 18"
+      },
+      "native": {}
+    },
+    {
+      "_id": "mower.state.19",
+      "type": "state",
+      "common": {
+        "name": "state 19",
+        "type": "boolean",
+        "role": "state",
+        "read": true,
+        "write": false,
+        "def": false,
+        "desc": "state 19"
+      },
+      "native": {}
+    },
+    {
+      "_id": "mower.state.20",
+      "type": "state",
+      "common": {
+        "name": "state 20",
+        "type": "boolean",
+        "role": "state",
+        "read": true,
+        "write": false,
+        "def": false,
+        "desc": "state 20"
+      },
+      "native": {}
+    },
+    {
+      "_id": "mower.state.21",
+      "type": "state",
+      "common": {
+        "name": "state 21",
+        "type": "boolean",
+        "role": "state",
+        "read": true,
+        "write": false,
+        "def": false,
+        "desc": "state 21"
+      },
+      "native": {}
+    },
+    {
+      "_id": "mower.state.22",
+      "type": "state",
+      "common": {
+        "name": "state 22",
+        "type": "boolean",
+        "role": "state",
+        "read": true,
+        "write": false,
+        "def": false,
+        "desc": "state 22"
+      },
+      "native": {}
+    },
+    {
+      "_id": "mower.state.23",
+      "type": "state",
+      "common": {
+        "name": "state 23",
+        "type": "boolean",
+        "role": "state",
+        "read": true,
+        "write": false,
+        "def": false,
+        "desc": "state 23"
+      },
+      "native": {}
+    },
+    {
+      "_id": "mower.state.24",
+      "type": "state",
+      "common": {
+        "name": "state 24",
+        "type": "boolean",
+        "role": "state",
+        "read": true,
+        "write": false,
+        "def": false,
+        "desc": "state 24"
+      },
+      "native": {}
+    },
+    {
+      "_id": "mower.state.25",
+      "type": "state",
+      "common": {
+        "name": "state 25",
+        "type": "boolean",
+        "role": "state",
+        "read": true,
+        "write": false,
+        "def": false,
+        "desc": "state 25"
+      },
+      "native": {}
+    },
+    {
+      "_id": "mower.state.26",
+      "type": "state",
+      "common": {
+        "name": "state 26",
+        "type": "boolean",
+        "role": "state",
+        "read": true,
+        "write": false,
+        "def": false,
+        "desc": "state 26"
+      },
+      "native": {}
+    },
+    {
+      "_id": "mower.state.27",
+      "type": "state",
+      "common": {
+        "name": "state 27",
+        "type": "boolean",
+        "role": "state",
+        "read": true,
+        "write": false,
+        "def": false,
+        "desc": "state 27"
+      },
+      "native": {}
+    },
+    {
+      "_id": "mower.state.28",
+      "type": "state",
+      "common": {
+        "name": "state 28",
+        "type": "boolean",
+        "role": "state",
+        "read": true,
+        "write": false,
+        "def": false,
+        "desc": "state 28"
+      },
+      "native": {}
+    },
+    {
+      "_id": "mower.state.29",
+      "type": "state",
+      "common": {
+        "name": "state 29",
+        "type": "boolean",
+        "role": "state",
+        "read": true,
+        "write": false,
+        "def": false,
+        "desc": "state 29"
+      },
+      "native": {}
+    },
+    {
+      "_id": "mower.state.30",
+      "type": "state",
+      "common": {
+        "name": "state 30",
+        "type": "boolean",
+        "role": "state",
+        "read": true,
+        "write": false,
+        "def": false,
+        "desc": "state 30"
+      },
+      "native": {}
+    },
+    {
+      "_id": "calendar",
+      "type": "channel",
+      "common": {
+        "name": "calendar",
+        "role": "calendar"
+      },
+      "native": {}
+    },
+    {
+      "_id": "calendar.sunday",
+      "type": "channel",
+      "common": {
+        "name": "Sunday",
+        "role": "calendar"
+      },
+      "native": {}
+    },
+    {
+      "_id": "calendar.sunday.startTime",
+      "type": "state",
+      "common": {
+        "name": "Start time",
+        "type": "string",
+        "role": "calendar",
+        "read": true,
+        "write": false,
+        "desc": "Hour:Minutes on the day (sunday) that the Landroid should start mowing"
+      },
+      "native": {}
+    },
+    {
+      "_id": "calendar.sunday.workTime",
+      "type": "state",
+      "common": {
+        "name": "Work time",
+        "type": "number",
+        "role": "calendar",
+        "read": true,
+        "write": false,
+        "desc": "Decides for how long the mower will work each day"
+      },
+      "native": {}
+    },
+    {
+      "_id": "calendar.monday",
+      "type": "channel",
+      "common": {
+        "name": "Monday",
+        "role": "calendar"
+      },
+      "native": {}
+    },
+    {
+      "_id": "calendar.monday.startTime",
+      "type": "state",
+      "common": {
+        "name": "Start time",
+        "type": "string",
+        "role": "calendar",
+        "read": true,
+        "write": false,
+        "desc": "Hour:Minutes on the day (monday) that the Landroid should start mowing"
+      },
+      "native": {}
+    },
+    {
+      "_id": "calendar.monday.workTime",
+      "type": "state",
+      "common": {
+        "name": "Work time",
+        "type": "number",
+        "role": "calendar",
+        "read": true,
+        "write": false,
+        "desc": "Decides for how long the mower will work each day"
+      },
+      "native": {}
+    },
+    {
+      "_id": "calendar.tuesday",
+      "type": "channel",
+      "common": {
+        "name": "Tuesday",
+        "role": "calendar"
+      },
+      "native": {}
+    },
+    {
+      "_id": "calendar.tuesday.startTime",
+      "type": "state",
+      "common": {
+        "name": "Start time",
+        "type": "string",
+        "role": "calendar",
+        "read": true,
+        "write": false,
+        "desc": "Hour:Minutes on the day (tuesday) that the Landroid should start mowing"
+      },
+      "native": {}
+    },
+    {
+      "_id": "calendar.tuesday.workTime",
+      "type": "state",
+      "common": {
+        "name": "Work time",
+        "type": "number",
+        "role": "calendar",
+        "read": true,
+        "write": false,
+        "desc": "Decides for how long the mower will work each day"
+      },
+      "native": {}
+    },
+    {
+      "_id": "calendar.wendsday",
+      "type": "channel",
+      "common": {
+        "name": "Wendsday",
+        "role": "calendar"
+      },
+      "native": {}
+    },
+    {
+      "_id": "calendar.wendsday.startTime",
+      "type": "state",
+      "common": {
+        "name": "Start time",
+        "type": "string",
+        "role": "calendar",
+        "read": true,
+        "write": false,
+        "desc": "Hour:Minutes on the day (wendsday) that the Landroid should start mowing"
+      },
+      "native": {}
+    },
+    {
+      "_id": "calendar.wendsday.workTime",
+      "type": "state",
+      "common": {
+        "name": "Work time",
+        "type": "number",
+        "role": "calendar",
+        "read": true,
+        "write": false,
+        "desc": "Decides for how long the mower will work each day"
+      },
+      "native": {}
+    },
+    {
+      "_id": "calendar.thursday",
+      "type": "channel",
+      "common": {
+        "name": "Thursday",
+        "role": "calendar"
+      },
+      "native": {}
+    },
+    {
+      "_id": "calendar.thursday.startTime",
+      "type": "state",
+      "common": {
+        "name": "Start time",
+        "type": "string",
+        "role": "calendar",
+        "read": true,
+        "write": false,
+        "desc": "Hour:Minutes on the day (thursday) that the Landroid should start mowing"
+      },
+      "native": {}
+    },
+    {
+      "_id": "calendar.thursday.workTime",
+      "type": "state",
+      "common": {
+        "name": "Work time",
+        "type": "number",
+        "role": "calendar",
+        "read": true,
+        "write": false,
+        "desc": "Decides for how long the mower will work each day"
+      },
+      "native": {}
+    },
+    {
+      "_id": "calendar.friday",
+      "type": "channel",
+      "common": {
+        "name": "Friday",
+        "role": "calendar"
+      },
+      "native": {}
+    },
+    {
+      "_id": "calendar.friday.startTime",
+      "type": "state",
+      "common": {
+        "name": "Start time",
+        "type": "string",
+        "role": "calendar",
+        "read": true,
+        "write": false,
+        "desc": "Hour:Minutes on the day (friday) that the Landroid should start mowing"
+      },
+      "native": {}
+    },
+    {
+      "_id": "calendar.friday.workTime",
+      "type": "state",
+      "common": {
+        "name": "Work time",
+        "type": "number",
+        "role": "calendar",
+        "read": true,
+        "write": false,
+        "desc": "Decides for how long the mower will work each day"
+      },
+      "native": {}
+    },
+    {
+      "_id": "calendar.saturday",
+      "type": "channel",
+      "common": {
+        "name": "Saturday",
+        "role": "calendar"
+      },
+      "native": {}
+    },
+    {
+      "_id": "calendar.saturday.startTime",
+      "type": "state",
+      "common": {
+        "name": "Start time",
+        "type": "string",
+        "role": "calendar",
+        "read": true,
+        "write": false,
+        "desc": "Hour:Minutes on the day (saturday) that the Landroid should start mowing"
+      },
+      "native": {}
+    },
+    {
+      "_id": "calendar.saturday.workTime",
+      "type": "state",
+      "common": {
+        "name": "Work time",
+        "type": "number",
+        "role": "calendar",
+        "read": true,
+        "write": false,
+        "desc": "Decides for how long the mower will work each day"
+      },
+      "native": {}
+    }
+  ]
 }
