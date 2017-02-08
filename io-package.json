@@ -9,7 +9,7 @@
         "ru": "Первоначальный адаптер"
       }
     },
-    "title": "Javascript/Node.js based landroid adapter",
+    "title": "WORX Landroid adapter",
     "desc": {
       "en": "ioBroker Landroid Adapter",
       "de": "ioBroker Landroid Adapter",
@@ -18,9 +18,9 @@
     "license": "MIT",
     "platform": "Javascript/Node.js",
     "mode": "daemon",
-    "icon": "worx.png",
+    "icon": "landroid.png",
     "enabled": true,
-    "extIcon": "https://raw.githubusercontent.com/ldittmar81/ioBroker.landroid/master/admin/worx.png",
+    "extIcon": "https://raw.githubusercontent.com/ldittmar81/ioBroker.landroid/master/admin/landroid.png",
     "keywords": [
       "landroid",
       "worx",
@@ -95,7 +95,7 @@
       "common": {
         "name": "Outside wire",
         "type": "boolean",
-        "role": "message",
+        "role": "alarm",
         "read": true,
         "write": false,
         "def": false,
@@ -641,7 +641,7 @@
       "common": {
         "name": "state 2",
         "type": "boolean",
-        "role": "message",
+        "role": "state",
         "read": true,
         "write": false,
         "def": false,
