@@ -22,6 +22,7 @@ var ping = require("ping");
 // adapter will be restarted automatically every time as the configuration changed, e.g system.adapter.template.0
 var adapter = utils.adapter("landroid");
 
+var ip = "";
 var options = {};
 
 // is called when adapter shuts down - callback has to be called under any circumstances!
@@ -87,38 +88,42 @@ adapter.on("ready", function () {
     main();
 });
 
-function startMower(){
+function startMower() {
     adapter.setState("mower.start", {val: false});
 }
 
-function stopMower(){
+function stopMower() {
     adapter.setState("mower.stop", {val: false});
 }
 
-function evaluateArray(alarm, name) {
+function evaluateArray(arr, name) {
     for (var i = 0; i < arr.length; i++) {
-        adapter.setState(name + i, {val: alarm[i] === 0, ack: true});
+        adapter.setState(name + i, {val: arr[i] === 1, ack: true});
     }
 }
 
 function evaluateResponse(data) {
     adapter.setState("mower.firmware", {val: data.versione_fw, ack: true});
     adapter.setState("mower.batteryState", {val: data.perc_batt, ack: true});
-    adapter.setState("mower.borderCut", {val: data.enab_bordo === 0, ack: true});
+    adapter.setState("mower.borderCut", {val: data.enab_bordo === 1, ack: true});
     evaluateArray(data.allarmi, "alarm.");
     evaluateArray(data.settaggi, "mower.state.");
 
 }
 
 function checkStatus() {
-    ping.sys.probe(adapter.config.ip, function (isAlive) {
+    ping.sys.probe(ip, function (isAlive) {
         adapter.setState("mower.connected", {val: isAlive, ack: true});
         if (isAlive) {
             var req = http.get(options, function (res) {
                 res.setEncoding("utf8");
+                var body = '';
                 res.on("data", function (data) {
-                    console.log(data);
-                    evaluateResponse(JSON.parse(data));
+                    body += data;
+                });
+                res.on("end", function () {
+                    var parsed = JSON.parse(body);
+                    evaluateResponse(parsed);
                 });
             });
         }
@@ -129,23 +134,29 @@ function main() {
 
     // The adapters config (in the instance object everything under the attribute "native") is accessible via
     // adapter.config:
+    var pin = adapter.config.pin;
+    ip = adapter.config.ip;
+    if(ip && pin && pin.match(/^\d{4}$/)) {
+        options = {
+            host: ip,
+            port: "80",
+            path: "/jsondata.cgi",
+            method: "GET",
+            headers: {"Authorization": 'Basic ' + new Buffer('admin:' + adapter.config.pin).toString('base64')}
+        };
 
+        adapter.subscribeStates("mower.start");
+        adapter.subscribeStates("mower.stop");
+        adapter.subscribeStates("mower.state.5");
+        adapter.subscribeStates("mower.state.13");
 
-    options = {
-        host: adapter.config.ip,
-        port: "80",
-        path: "/jsondata.cgi",
-        method: "GET",
-        headers: {
-            "Authorization": "Basic " + new Buffer("admin:" + adapter.config.pin).toString("base64")
+        var secs = adapter.config.poll;
+        if(isNaN(secs) || secs <1){
+            secs = 10;
         }
-    };
-
-    adapter.subscribeStates("mower.start");
-    adapter.subscribeStates("mower.stop");
-    adapter.subscribeStates("mower.state.5");
-    adapter.subscribeStates("mower.state.13");
-
-    setInterval(checkStatus, adapter.config.poll * 1000);
+        setInterval(checkStatus, secs * 1000);
+    }else{
+        adapter.log.error("Please configure the Landroid Adapter and restart it");
+    }
 
 }

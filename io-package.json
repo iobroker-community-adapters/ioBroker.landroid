@@ -19,7 +19,7 @@
     "platform": "Javascript/Node.js",
     "mode": "daemon",
     "icon": "landroid.png",
-    "enabled": true,
+    "enabled": false,
     "extIcon": "https://raw.githubusercontent.com/ldittmar81/ioBroker.landroid/master/admin/landroid.png",
     "keywords": [
       "landroid",
@@ -31,12 +31,12 @@
     ],
     "readme": "https://github.com/ldittmar81/ioBroker.landroid/blob/master/README.md",
     "loglevel": "info",
-    "type": "common adapters"
+    "type": "hardware"
   },
   "native": {
     "ip": "",
     "pin": "",
-    "poll": "5"
+    "poll": "10"
   },
   "objects": [],
   "instanceObjects": [

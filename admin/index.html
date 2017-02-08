@@ -35,11 +35,6 @@
             "en": "Query interval in seconds",
             "ru": "Интервал запроса в секундах"
         },
-        "pollError": {
-            "de": "Zeit zwischen 1 und 60 Sekunden wählen",
-            "en": "Select a time between 1 and 60 seconds",
-            "ru": "Выберите от 1 до 60 секунд"
-        },
         "Settings": {
             "de": "Einstellungen",
             "ru": "настройки"
@@ -88,12 +83,6 @@
         callback(obj);
     }
 
-    $('#poll').on('blur', function(){
-        var value = $(this).val();
-        if(!value.match(/^\d+$/) || value < 1 || value > 60){
-            $('#poll_error').show();
-        }
-    });
 </script>
 
 <!-- you have to put your config page in a div with id adapter-container -->
@@ -128,7 +117,6 @@
             <td class="translate"><label class="translate" for="poll">Intervall</label></td>
             <td>
                 <input class="value" id="poll" type="text" size="6" maxlength="4"/>
-                <span class="translate" id="poll_error" style="color: red; display: none;">pollError</span>
             </td>
         </tr>
     </table>
