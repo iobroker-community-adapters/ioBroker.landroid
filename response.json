@@ -95,12 +95,12 @@
     0
   ],
   "mac": [
-    0,
-    35,
-    167,
-    68,
-    224,
-    144
+    ...,
+    ...,
+    ...,
+    ...,
+    ...,
+    ...
   ],
   "time_format": 1,
   "date_format": 1,
@@ -145,6 +145,6 @@
     1
   ],
   "area_in_lavoro": 0,
-  "email": "ldittmar.privat@gmail.com",
+  "email": "iobroker@lmdsoft.de",
   "perc_batt": "88"
 }
