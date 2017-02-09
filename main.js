@@ -24,6 +24,7 @@ var adapter = utils.adapter("landroid");
 
 var ip = "";
 var options = {};
+var postOptions = {};
 
 // is called when adapter shuts down - callback has to be called under any circumstances!
 adapter.on("unload", function (callback) {
@@ -44,11 +45,6 @@ adapter.on("objectChange", function (id, obj) {
 // is called if a subscribed state changes
 adapter.on("stateChange", function (id, state) {
 
-    if (!state && id === adapter.namespace + "mower.state.5") {
-        adapter.setState("mower.charging", {val: false, ack: true});
-        adapter.setState("mower.chargingComplete", {val: false, ack: true});
-    }
-
     if (!state) {
         return;
     }
@@ -58,13 +54,6 @@ adapter.on("stateChange", function (id, state) {
     }
     else if (id === adapter.namespace + ".mower.stop") {
         stopMower();
-    }
-    else if (id === adapter.namespace + "mower.state.5" && !adapter.getState("mower.state.13")) {
-        adapter.setState("mower.charging", {val: true, ack: true});
-    }
-    else if (id === adapter.namespace + "mower.state.13" && adapter.getState("mower.state.5")) {
-        adapter.setState("mower.charging", {val: false, ack: true});
-        adapter.setState("mower.chargingComplete", {val: true, ack: true});
     }
 
 });
@@ -89,26 +78,103 @@ adapter.on("ready", function () {
 });
 
 function startMower() {
-    adapter.setState("mower.start", {val: false});
+    adapter.setState("mower.start", {val: false, ack: true});
 }
 
 function stopMower() {
-    adapter.setState("mower.stop", {val: false});
+    adapter.setState("mower.stop", {val: false, ack: true});
 }
 
-function evaluateArray(arr, name) {
-    for (var i = 0; i < arr.length; i++) {
-        adapter.setState(name + i, {val: arr[i] === 1, ack: true});
+function evaluateCalendar(arrHour, arrMin, arrTime) {
+    var weekday = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'];
+    for (var i = 0; i < weekday.length; i++) {
+        var starttime = (arrHour[i] < 10) ? "0" + arrHour[i] : arrHour[i];
+        starttime += ":";
+        starttime += (arrMin[i] < 10) ? "0" + arrMin[i] : arrMin[i];
+        adapter.setState("calendar." + weekday[i] + ".startTime", {val: starttime, ack: true});
+        adapter.setState("calendar." + weekday[i] + ".workTime", {val: arrTime[i] * 0.1, ack: true});
     }
 }
 
-function evaluateResponse(data) {
-    adapter.setState("mower.firmware", {val: data.versione_fw, ack: true});
-    adapter.setState("mower.batteryState", {val: data.perc_batt, ack: true});
-    adapter.setState("mower.borderCut", {val: data.enab_bordo === 1, ack: true});
-    evaluateArray(data.allarmi, "alarm.");
-    evaluateArray(data.settaggi, "mower.state.");
+function getStatus(statusArr, alarmArr) {
 
+    var alarm = false;
+    for (var i = 0; i < alarmArr.length; i++) {
+        if (alarmArr[i] === 1) {
+            alarm = true;
+            break;
+        }
+    }
+
+    if (statusArr[14] === 1 && !alarm) {
+        return 'manual_stop';
+    }
+    else if (statusArr[5] === 1 && statusArr[13] === 0 && !alarm) {
+        return 'charging';
+    }
+    else if (statusArr[5] === 1 && statusArr[13] === 1 && !alarm) {
+        return 'charge_completed';
+    }
+    else if (statusArr[15] === 1 && !alarm) {
+        return 'going_home';
+    }
+    else if (alarmArr[0] === 1) {
+        return 'blade_blocked';
+    }
+    else if (alarmArr[1] === 1) {
+        return 'repositioning_error';
+    }
+    else if (alarmArr[2] === 1) {
+        return 'outside_wire';
+    }
+    else if (alarmArr[3] === 1) {
+        return 'blade_blocked';
+    }
+    else if (alarmArr[4] === 1) {
+        return 'outside_wire';
+    }
+    else if (alarmArr[10] === 1) {
+        return 'mower_tilted';
+    }
+    else if (alarmArr[5] === 1) {
+        return 'mower_lifted';
+    }
+    else if (alarmArr[6] === 1 || alarmArr[7] === 1 || alarmArr[8] === 1) {
+        return 'error';
+    }
+    else if (alarmArr[9] === 1) {
+        return 'collision_sensor_blocked';
+    }
+    else if (alarmArr[11] === 1) {
+        return 'charge_error';
+    }
+    else if (alarmArr[12] === 1) {
+        return 'battery_error';
+    }
+    else {
+        return 'mowing';
+    }
+}
+
+function checkFirmware(data) {
+    if (data.CntProg) {
+        return "0." + data.CntProg;
+    }
+    return data.versione_fw;
+}
+
+function evaluateResponse(data) {
+    adapter.setState("lastsync", {val: new Date().toISOString(), ack: true});
+    adapter.setState("firmware", {val: checkFirmware(data), ack: true});
+
+    evaluateCalendar(data.ora_on, data.min_on, data.ore_funz);
+
+    adapter.setState("mower.waitRain", {val: data.rit_pioggia, ack: true});
+    adapter.setState("mower.batteryState", {val: data.perc_batt, ack: true});
+    adapter.setState("mower.areasUse", {val: data.num_aree_lavoro, ack: true});
+    adapter.setState("mower.totalTime", {val: data.ore_movimento * 0.1, ack: true});
+    adapter.setState("mower.borderCut", {val: data.enab_bordo === 1, ack: true});
+    adapter.setState("mower.status", {val: getStatus(data.settaggi, data.allarmi), ack: true});
 }
 
 function checkStatus() {
@@ -136,7 +202,9 @@ function main() {
     // adapter.config:
     var pin = adapter.config.pin;
     ip = adapter.config.ip;
-    if(ip && pin && pin.match(/^\d{4}$/)) {
+
+    if (ip && pin && pin.match(/^\d{4}$/)) {
+
         options = {
             host: ip,
             port: "80",
@@ -147,15 +215,15 @@ function main() {
 
         adapter.subscribeStates("mower.start");
         adapter.subscribeStates("mower.stop");
-        adapter.subscribeStates("mower.state.5");
-        adapter.subscribeStates("mower.state.13");
 
         var secs = adapter.config.poll;
-        if(isNaN(secs) || secs <1){
+        if (isNaN(secs) || secs < 1) {
             secs = 10;
         }
+
         setInterval(checkStatus, secs * 1000);
-    }else{
+
+    } else {
         adapter.log.error("Please configure the Landroid Adapter and restart it");
     }
 

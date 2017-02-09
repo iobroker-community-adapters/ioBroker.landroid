@@ -21,7 +21,7 @@ module.exports = function (grunt) {
     if (process.argv[2] == 'rename') {
 		console.log('Try to rename to "' + newname + '"');
         if (!newname) {
-            console.log('Please write the new template name, like: "grunt rename --name=mywidgetset" --author="Author Name"');
+            console.log('Please write the new landroid name, like: "grunt rename --name=mywidgetset" --author="Author Name"');
             process.exit();
         }
         if (newname.indexOf(' ') != -1) {
@@ -32,17 +32,17 @@ module.exports = function (grunt) {
             console.log('Name must be lower case.');
             process.exit();
         }
-        if (fs.existsSync(__dirname + '/admin/template.png')) {
-            fs.renameSync(__dirname + '/admin/template.png',              __dirname + '/admin/' + newname + '.png');
+        if (fs.existsSync(__dirname + '/admin/landroid.png')) {
+            fs.renameSync(__dirname + '/admin/landroid.png',              __dirname + '/admin/' + newname + '.png');
         }
-        if (fs.existsSync(__dirname + '/widgets/template.html')) {
-            fs.renameSync(__dirname + '/widgets/template.html',           __dirname + '/widgets/' + newname + '.html');
+        if (fs.existsSync(__dirname + '/widgets/landroid.html')) {
+            fs.renameSync(__dirname + '/widgets/landroid.html',           __dirname + '/widgets/' + newname + '.html');
         }
-        if (fs.existsSync(__dirname + '/widgets/template/js/template.js')) {
-            fs.renameSync(__dirname + '/widgets/template/js/template.js', __dirname + '/widgets/template/js/' + newname + '.js');
+        if (fs.existsSync(__dirname + '/widgets/landroid/js/landroid.js')) {
+            fs.renameSync(__dirname + '/widgets/landroid/js/landroid.js', __dirname + '/widgets/landroid/js/' + newname + '.js');
         }
-        if (fs.existsSync(__dirname + '/widgets/template')) {
-            fs.renameSync(__dirname + '/widgets/template',                __dirname + '/widgets/' + newname);
+        if (fs.existsSync(__dirname + '/widgets/landroid')) {
+            fs.renameSync(__dirname + '/widgets/landroid',                __dirname + '/widgets/' + newname);
         }
     }
 
@@ -100,12 +100,12 @@ module.exports = function (grunt) {
                 options: {
                     patterns: [
                         {
-                            match: /template/g,
+                            match: /landroid/g,
                             replacement: newname
                         },
                         {
-                            match: /Template/g,
-                            replacement: newname ? (newname[0].toUpperCase() + newname.substring(1)) : 'Template'
+                            match: /Landroid/g,
+                            replacement: newname ? (newname[0].toUpperCase() + newname.substring(1)) : 'Landroid'
                         },
                         {
                             match: /@@Author@@/g,
