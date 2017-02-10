@@ -174,20 +174,6 @@
       "native": {}
     },
     {
-      "_id": "mower.totalTime",
-      "type": "state",
-      "common": {
-        "name": "Total mower time",
-        "type": "number",
-        "role": "value.interval",
-        "unit": "h",
-        "read": true,
-        "write": false,
-        "desc": "Total time the mower has been mowing in hours"
-      },
-      "native": {}
-    },
-    {
       "_id": "mower.areasUse",
       "type": "state",
       "common": {

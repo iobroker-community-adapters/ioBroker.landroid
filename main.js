@@ -23,8 +23,9 @@ var ping = require("ping");
 var adapter = utils.adapter("landroid");
 
 var ip = "";
+var pin = "";
+var data = {};
 var options = {};
-var postOptions = {};
 
 // is called when adapter shuts down - callback has to be called under any circumstances!
 adapter.on("unload", function (callback) {
@@ -78,11 +79,23 @@ adapter.on("ready", function () {
 });
 
 function startMower() {
+    createPostOption(11);
     adapter.setState("mower.start", {val: false, ack: true});
 }
 
 function stopMower() {
+    createPostOption(12);
     adapter.setState("mower.stop", {val: false, ack: true});
+}
+
+function createPostOption(command){
+    return {
+        host: ip,
+        port: "80",
+        path: "/jsondata.cgi",
+        method: "POST",
+        headers: {"Authorization": 'Basic ' + new Buffer('admin:' + pin).toString('base64')}
+    }
 }
 
 function evaluateCalendar(arrHour, arrMin, arrTime) {
@@ -156,14 +169,95 @@ function getStatus(statusArr, alarmArr) {
     }
 }
 
-function checkFirmware(data) {
+function procedewg796e(){
+    adapter.setObjectNotExists('mower.totalTime', {
+        type: 'state',
+        common: {
+            name: "Total mower time",
+            type: "number",
+            role: "value.interval",
+            unit: "h",
+            read: true,
+            write: false,
+            desc: "Total time the mower has been mowing in hours"
+        },
+        native: {}
+    });
+    adapter.setState("mower.totalTime", {val: data.ore_movimento * 0.1, ack: true});
+}
+
+function procedewg797e1(){
+    adapter.setObjectNotExists('mower.distance', {
+        type: 'state',
+        common: {
+            name: "Total mower distance",
+            type: "number",
+            role: "value.interval",
+            unit: "m",
+            read: true,
+            write: false,
+            desc: "Total distance the mower has been mowing in hours"
+        },
+        native: {}
+    });
+    adapter.setObjectNotExists('mower.batteryChargerState', {
+        type: 'state',
+        common: {
+            name: "Battery charger state",
+            type: "string",
+            role: "value.interval",
+            read: true,
+            write: false,
+            desc: "Battery charger state"
+        },
+        native: {}
+    });
+    adapter.setObjectNotExists('mower.workReq', {
+        type: 'state',
+        common: {
+            name: "Work request",
+            type: "string",
+            role: "value.interval",
+            read: true,
+            write: false,
+            desc: "Last request from user"
+        },
+        native: {}
+    });
+    adapter.setObjectNotExists('mower.message', {
+        type: 'state',
+        common: {
+            name: "Message",
+            type: "string",
+            role: "value.interval",
+            read: true,
+            write: false,
+            desc: "Landroid message"
+        },
+        native: {}
+    });
+    adapter.setState("mower.distance", {val: data.distance, ack: true});
+    adapter.setState("mower.batteryChargerState", {val: data.batteryChargerState, ack: true});
+    adapter.setState("mower.workReq", {val: data.workReq, ack: true});
+    adapter.setState("mower.message", {val: data.message, ack: true});
+}
+
+function createStates(){
+    if("ore_movimento" in data) {
+        procedewg796e();
+    }else{
+        procedewg797e1();
+    }
+}
+
+function checkFirmware() {
     if (data.CntProg) {
         return "0." + data.CntProg;
     }
     return data.versione_fw;
 }
 
-function evaluateResponse(data) {
+function evaluateResponse() {
     adapter.setState("lastsync", {val: new Date().toISOString(), ack: true});
     adapter.setState("firmware", {val: checkFirmware(data), ack: true});
 
@@ -172,24 +266,25 @@ function evaluateResponse(data) {
     adapter.setState("mower.waitRain", {val: data.rit_pioggia, ack: true});
     adapter.setState("mower.batteryState", {val: data.perc_batt, ack: true});
     adapter.setState("mower.areasUse", {val: data.num_aree_lavoro, ack: true});
-    adapter.setState("mower.totalTime", {val: data.ore_movimento * 0.1, ack: true});
     adapter.setState("mower.borderCut", {val: data.enab_bordo === 1, ack: true});
-    adapter.setState("mower.status", {val: getStatus(data.settaggi, data.allarmi), ack: true});
+    adapter.setState("mower.status", {val: data.state || getStatus(data.settaggi, data.allarmi), ack: true});
+
+    createStates(data);
 }
 
 function checkStatus() {
     ping.sys.probe(ip, function (isAlive) {
         adapter.setState("mower.connected", {val: isAlive, ack: true});
         if (isAlive) {
-            var req = http.get(options, function (res) {
+            http.get(options, function (res) {
                 res.setEncoding("utf8");
                 var body = '';
-                res.on("data", function (data) {
-                    body += data;
+                res.on("data", function (partResponse) {
+                    body += partResponse;
                 });
                 res.on("end", function () {
-                    var parsed = JSON.parse(body);
-                    evaluateResponse(parsed);
+                    data = JSON.parse(body);
+                    evaluateResponse();
                 });
             });
         }
@@ -200,7 +295,7 @@ function main() {
 
     // The adapters config (in the instance object everything under the attribute "native") is accessible via
     // adapter.config:
-    var pin = adapter.config.pin;
+    pin = adapter.config.pin;
     ip = adapter.config.ip;
 
     if (ip && pin && pin.match(/^\d{4}$/)) {
@@ -210,7 +305,7 @@ function main() {
             port: "80",
             path: "/jsondata.cgi",
             method: "GET",
-            headers: {"Authorization": 'Basic ' + new Buffer('admin:' + adapter.config.pin).toString('base64')}
+            headers: {"Authorization": 'Basic ' + new Buffer('admin:' + pin).toString('base64')}
         };
 
         adapter.subscribeStates("mower.start");
@@ -224,7 +319,7 @@ function main() {
         setInterval(checkStatus, secs * 1000);
 
     } else {
-        adapter.log.error("Please configure the Landroid Adapter and restart it");
+        adapter.log.error("Please configure the Landroid Adapter");
     }
 
 }
