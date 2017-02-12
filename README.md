@@ -18,7 +18,7 @@ This is an ioBroker adapter for your Worx Landroid mowing machine. It have been 
 ## Changelog
 
 #### 0.0.2
-* (ldittmar) read all important informations
+* (ldittmar) read all important informations (can't start or stop ist at this time)
 
 #### 0.0.1
 * (ldittmar) initial commit
