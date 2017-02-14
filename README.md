@@ -4,11 +4,14 @@ ioBroker.landroid
 
 [![NPM version](http://img.shields.io/npm/v/iobroker.landroid.svg)](https://www.npmjs.com/package/iobroker.landroid)
 [![Downloads](https://img.shields.io/npm/dm/iobroker.landroid.svg)](https://www.npmjs.com/package/iobroker.landroid)
+[![Dependency Status](https://img.shields.io/david/request/request.svg?style=flat-square)](https://david-dm.org/ldittmar81/iobroker.landroid)
+[![Known Vulnerabilities](https://snyk.io/test/github/ldittmar81/ioBroker.landroid/badge.svg)](https://snyk.io/test/github/ldittmar81/ioBroker.landroid)
 
 [![NPM](https://nodei.co/npm/iobroker.landroid.png?downloads=true)](https://nodei.co/npm/iobroker.landroid/)
 
 **Tests:** Linux/Mac: [![Travis-CI](http://img.shields.io/travis/ldittmar81/ioBroker.landroid/master.svg)](https://travis-ci.org/ldittmar81/ioBroker.landroid)
 Windows: [![AppVeyor](https://ci.appveyor.com/api/projects/status/github/ldittmar81/ioBroker.landroid?branch=master&svg=true)](https://ci.appveyor.com/project/ldittmar81/ioBroker-landroid/)
+
 
 ### A Worx Landroid adapter for ioBroker
 =================
