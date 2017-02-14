@@ -20,7 +20,8 @@
     "url": "https://github.com/ldittmar81/ioBroker.landroid"
   },
   "dependencies": {
-    "ping": "^0.2.1"
+    "ping": "^0.2.1",
+    "request": "^2.79.0"
   },
   "devDependencies": {
     "grunt": "^0.4.5",

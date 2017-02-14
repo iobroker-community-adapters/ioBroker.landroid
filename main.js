@@ -14,7 +14,7 @@
 
 // you have to require the utils module and call adapter function
 var utils = require(__dirname + "/lib/utils"); // Get common adapter utils
-var http = require("http");
+var request = require('request');
 var ping = require("ping");
 
 // you have to call the adapter function and pass a options object
@@ -22,10 +22,7 @@ var ping = require("ping");
 // adapter will be restarted automatically every time as the configuration changed, e.g system.adapter.template.0
 var adapter = utils.adapter("landroid");
 
-var ip = "";
-var pin = "";
-var data = {};
-var options = {};
+var ip, pin, client, data, getOptions;
 
 // is called when adapter shuts down - callback has to be called under any circumstances!
 adapter.on("unload", function (callback) {
@@ -45,18 +42,16 @@ adapter.on("objectChange", function (id, obj) {
 
 // is called if a subscribed state changes
 adapter.on("stateChange", function (id, state) {
-
     if (!state) {
         return;
     }
 
-    if (id === adapter.namespace + ".mower.start") {
+    if (id === adapter.namespace + ".mower.start" && state.val) {
         startMower();
     }
-    else if (id === adapter.namespace + ".mower.stop") {
+    else if (id === adapter.namespace + ".mower.stop" && state.val) {
         stopMower();
     }
-
 });
 
 // Some message was sent to adapter instance over message box. Used by email, pushover, text2speech, ...
@@ -79,33 +74,48 @@ adapter.on("ready", function () {
 });
 
 function startMower() {
-    createPostOption(11);
+    adapter.log.info("Start Landroid");
+    doPost({'data': JSON.stringify([['settaggi', 11, 1]])});
     adapter.setState("mower.start", {val: false, ack: true});
 }
 
 function stopMower() {
-    createPostOption(12);
+    adapter.log.info("Stop Landroid");
+    doPost({'data': JSON.stringify([['settaggi', 12, 1]])});
     adapter.setState("mower.stop", {val: false, ack: true});
 }
 
-function createPostOption(command){
-    return {
-        host: ip,
-        port: "80",
-        path: "/jsondata.cgi",
-        method: "POST",
+function doPost(postData){
+    adapter.log.info("postData: " + JSON.stringify(postData) );
+
+    var options = {
+        url: "http://" + ip + ":80/jsondata.cgi",
+        async: true,
+        type: 'POST',
+        cache: false,
+        data: postData,
+        dataType: 'json',
         headers: {"Authorization": 'Basic ' + new Buffer('admin:' + pin).toString('base64')}
     }
+
+    request(options, function (error, response, body) {
+        if (!error && response.statusCode == 200) {
+            data = body;
+            evaluateResponse();
+        }
+    });
 }
 
 function evaluateCalendar(arrHour, arrMin, arrTime) {
-    var weekday = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'];
-    for (var i = 0; i < weekday.length; i++) {
-        var starttime = (arrHour[i] < 10) ? "0" + arrHour[i] : arrHour[i];
-        starttime += ":";
-        starttime += (arrMin[i] < 10) ? "0" + arrMin[i] : arrMin[i];
-        adapter.setState("calendar." + weekday[i] + ".startTime", {val: starttime, ack: true});
-        adapter.setState("calendar." + weekday[i] + ".workTime", {val: arrTime[i] * 0.1, ack: true});
+    if(arrHour && arrMin && arrTime) {
+        var weekday = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'];
+        for (var i = 0; i < weekday.length; i++) {
+            var starttime = (arrHour[i] < 10) ? "0" + arrHour[i] : arrHour[i];
+            starttime += ":";
+            starttime += (arrMin[i] < 10) ? "0" + arrMin[i] : arrMin[i];
+            adapter.setState("calendar." + weekday[i] + ".startTime", {val: starttime, ack: true});
+            adapter.setState("calendar." + weekday[i] + ".workTime", {val: arrTime[i] * 0.1, ack: true});
+        }
     }
 }
 
@@ -276,16 +286,11 @@ function checkStatus() {
     ping.sys.probe(ip, function (isAlive) {
         adapter.setState("mower.connected", {val: isAlive, ack: true});
         if (isAlive) {
-            http.get(options, function (res) {
-                res.setEncoding("utf8");
-                var body = '';
-                res.on("data", function (partResponse) {
-                    body += partResponse;
-                });
-                res.on("end", function () {
-                    data = JSON.parse(body);
+            request(getOptions, function (error, response, body) {
+                if (!error && response.statusCode == 200) {
+                    data = body;
                     evaluateResponse();
-                });
+                }
             });
         }
     });
@@ -295,15 +300,16 @@ function main() {
 
     // The adapters config (in the instance object everything under the attribute "native") is accessible via
     // adapter.config:
-    pin = adapter.config.pin;
+
     ip = adapter.config.ip;
+    pin = adapter.config.pin;
+    client = request.createClient('http://' + ip);
+    client.setBasicAuth('admin', pin);
 
     if (ip && pin && pin.match(/^\d{4}$/)) {
 
-        options = {
-            host: ip,
-            port: "80",
-            path: "/jsondata.cgi",
+        getOptions = {
+            url: "http://" + ip + ":80/jsondata.cgi",
             method: "GET",
             headers: {"Authorization": 'Basic ' + new Buffer('admin:' + pin).toString('base64')}
         };
