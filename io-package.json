@@ -1,12 +1,17 @@
 {
   "common": {
     "name": "landroid",
-    "version": "0.0.3",
+    "version": "0.0.4",
     "news": {
-      "0.0.3": {
-        "en": "Bugfixes",
+      "0.0.4": {
+        "en": "bug fixes",
         "de": "Bugfixes",
-        "ru": "Bugfixes"
+        "ru": "исправлены ошибки"
+      },
+      "0.0.3": {
+        "en": "Minor bug fixes / compatibility with the WG797E.1 mower",
+        "de": "kleinere Bugfixes / Kompatibilität zum WG797E.1 Mäher",
+        "ru": "незначительные исправления / совместимость для WG797E.1 косилкой"
       },
       "0.0.2": {
         "en": "All important informations are read out",

@@ -22,7 +22,7 @@ var ping = require("ping");
 // adapter will be restarted automatically every time as the configuration changed, e.g system.adapter.template.0
 var adapter = utils.adapter("landroid");
 
-var ip, pin, client, data, getOptions;
+var ip, pin, data, getOptions;
 
 // is called when adapter shuts down - callback has to be called under any circumstances!
 adapter.on("unload", function (callback) {
@@ -86,8 +86,6 @@ function stopMower() {
 }
 
 function doPost(postData){
-    adapter.log.info("postData: " + JSON.stringify(postData) );
-
     var options = {
         url: "http://" + ip + ":80/jsondata.cgi",
         async: true,
@@ -100,7 +98,7 @@ function doPost(postData){
 
     request(options, function (error, response, body) {
         if (!error && response.statusCode == 200) {
-            data = body;
+            data = JSON.parse(body);
             evaluateResponse();
         }
     });
@@ -121,61 +119,64 @@ function evaluateCalendar(arrHour, arrMin, arrTime) {
 
 function getStatus(statusArr, alarmArr) {
 
-    var alarm = false;
-    for (var i = 0; i < alarmArr.length; i++) {
-        if (alarmArr[i] === 1) {
-            alarm = true;
-            break;
-        }
-    }
+    if(statusArr && alarmArr) {
 
-    if (statusArr[14] === 1 && !alarm) {
-        return 'manual_stop';
-    }
-    else if (statusArr[5] === 1 && statusArr[13] === 0 && !alarm) {
-        return 'charging';
-    }
-    else if (statusArr[5] === 1 && statusArr[13] === 1 && !alarm) {
-        return 'charge_completed';
-    }
-    else if (statusArr[15] === 1 && !alarm) {
-        return 'going_home';
-    }
-    else if (alarmArr[0] === 1) {
-        return 'blade_blocked';
-    }
-    else if (alarmArr[1] === 1) {
-        return 'repositioning_error';
-    }
-    else if (alarmArr[2] === 1) {
-        return 'outside_wire';
-    }
-    else if (alarmArr[3] === 1) {
-        return 'blade_blocked';
-    }
-    else if (alarmArr[4] === 1) {
-        return 'outside_wire';
-    }
-    else if (alarmArr[10] === 1) {
-        return 'mower_tilted';
-    }
-    else if (alarmArr[5] === 1) {
-        return 'mower_lifted';
-    }
-    else if (alarmArr[6] === 1 || alarmArr[7] === 1 || alarmArr[8] === 1) {
-        return 'error';
-    }
-    else if (alarmArr[9] === 1) {
-        return 'collision_sensor_blocked';
-    }
-    else if (alarmArr[11] === 1) {
-        return 'charge_error';
-    }
-    else if (alarmArr[12] === 1) {
-        return 'battery_error';
-    }
-    else {
-        return 'mowing';
+        var alarm = false;
+        for (var i = 0; i < alarmArr.length; i++) {
+            if (alarmArr[i] === 1) {
+                alarm = true;
+                break;
+            }
+        }
+
+        if (statusArr[14] === 1 && !alarm) {
+            return 'manual_stop';
+        }
+        else if (statusArr[5] === 1 && statusArr[13] === 0 && !alarm) {
+            return 'charging';
+        }
+        else if (statusArr[5] === 1 && statusArr[13] === 1 && !alarm) {
+            return 'charge_completed';
+        }
+        else if (statusArr[15] === 1 && !alarm) {
+            return 'going_home';
+        }
+        else if (alarmArr[0] === 1) {
+            return 'blade_blocked';
+        }
+        else if (alarmArr[1] === 1) {
+            return 'repositioning_error';
+        }
+        else if (alarmArr[2] === 1) {
+            return 'outside_wire';
+        }
+        else if (alarmArr[3] === 1) {
+            return 'blade_blocked';
+        }
+        else if (alarmArr[4] === 1) {
+            return 'outside_wire';
+        }
+        else if (alarmArr[10] === 1) {
+            return 'mower_tilted';
+        }
+        else if (alarmArr[5] === 1) {
+            return 'mower_lifted';
+        }
+        else if (alarmArr[6] === 1 || alarmArr[7] === 1 || alarmArr[8] === 1) {
+            return 'error';
+        }
+        else if (alarmArr[9] === 1) {
+            return 'collision_sensor_blocked';
+        }
+        else if (alarmArr[11] === 1) {
+            return 'charge_error';
+        }
+        else if (alarmArr[12] === 1) {
+            return 'battery_error';
+        }
+        else {
+            return 'mowing';
+        }
     }
 }
 
@@ -288,7 +289,7 @@ function checkStatus() {
         if (isAlive) {
             request(getOptions, function (error, response, body) {
                 if (!error && response.statusCode == 200) {
-                    data = body;
+                    data = JSON.parse(body);
                     evaluateResponse();
                 }
             });
@@ -303,14 +304,12 @@ function main() {
 
     ip = adapter.config.ip;
     pin = adapter.config.pin;
-    client = request.createClient('http://' + ip);
-    client.setBasicAuth('admin', pin);
 
     if (ip && pin && pin.match(/^\d{4}$/)) {
 
         getOptions = {
             url: "http://" + ip + ":80/jsondata.cgi",
-            method: "GET",
+            type: "GET",
             headers: {"Authorization": 'Basic ' + new Buffer('admin:' + pin).toString('base64')}
         };
 

@@ -17,8 +17,11 @@ This is an ioBroker adapter for your Worx Landroid mowing machine. It have been 
 
 ## Changelog
 
+#### 0.0.4
+* (ldittmar) Bugfixes
+
 #### 0.0.3
-* (ldittmar) kleinere Bugfixes / Kompatibilität zum WG797E.1
+* (ldittmar) Minor bug fixes / compatibility with the WG797E.1 mower
 
 #### 0.0.2
 * (ldittmar) read all important informations (can't start or stop ist at this time)
