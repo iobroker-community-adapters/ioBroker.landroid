@@ -1,8 +1,13 @@
 {
   "common": {
     "name": "landroid",
-    "version": "0.0.2",
+    "version": "0.0.3",
     "news": {
+      "0.0.3": {
+        "en": "Bugfixes",
+        "de": "Bugfixes",
+        "ru": "Bugfixes"
+      },
       "0.0.2": {
         "en": "All important informations are read out",
         "de": "Alle wichtigen Informationen werden ausgelesen",
