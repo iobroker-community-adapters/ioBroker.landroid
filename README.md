@@ -6,6 +6,7 @@ ioBroker.landroid
 [![Downloads](https://img.shields.io/npm/dm/iobroker.landroid.svg)](https://www.npmjs.com/package/iobroker.landroid)
 [![Dependency Status](https://img.shields.io/david/ldittmar81/iobroker.landroid.svg)](https://david-dm.org/ldittmar81/iobroker.landroid)
 [![Known Vulnerabilities](https://snyk.io/test/github/ldittmar81/ioBroker.landroid/badge.svg)](https://snyk.io/test/github/ldittmar81/ioBroker.landroid)
+[![bitHound Overall Score](https://www.bithound.io/github/ldittmar81/ioBroker.landroid/badges/score.svg)](https://www.bithound.io/github/ldittmar81/ioBroker.landroid)
 
 [![NPM](https://nodei.co/npm/iobroker.landroid.png?downloads=true)](https://nodei.co/npm/iobroker.landroid/)
 
