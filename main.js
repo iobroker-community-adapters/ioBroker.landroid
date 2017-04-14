@@ -75,13 +75,13 @@ adapter.on("ready", function () {
 
 function startMower() {
     adapter.log.info("Start Landroid");
-    doPost({'data': JSON.stringify([['settaggi', 11, 1]])});
+    doPost('data=[["settaggi", 11, 1]]');
     adapter.setState("mower.start", {val: false, ack: true});
 }
 
 function stopMower() {
     adapter.log.info("Stop Landroid");
-    doPost({'data': JSON.stringify([['settaggi', 12, 1]])});
+    doPost('data=[["settaggi", 12, 1]]');
     adapter.setState("mower.stop", {val: false, ack: true});
 }
 
@@ -89,11 +89,10 @@ function doPost(postData){
     var options = {
         url: "http://" + ip + ":80/jsondata.cgi",
         async: true,
-        type: 'POST',
+        method: 'POST',
         cache: false,
-        data: postData,
-        dataType: 'json',
-        headers: {"Authorization": 'Basic ' + new Buffer('admin:' + pin).toString('base64')}
+        body: postData,
+        headers: {'Content-length': postData.length, 'Content-type': 'application/x-www-form-urlencoded', 'Accept': 'application/json', "Authorization": 'Basic ' + new Buffer('admin:' + pin).toString('base64')}
     }
 
     request(options, function (error, response, body) {
