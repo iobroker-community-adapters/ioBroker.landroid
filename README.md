@@ -21,6 +21,9 @@ This is an ioBroker adapter for your Worx Landroid mowing machine. It have been 
 
 ## Changelog
 
+#### 0.1.1
+* (ldittmar) Change PIN field to type password
+
 #### 0.1.0
 * (ChrBender) Bug with start/stop button fixed
 

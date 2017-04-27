@@ -1,8 +1,14 @@
 {
     "common": {
         "name": "landroid",
-        "version": "0.1.0",
+        "version": "0.1.1",
         "news": {
+            "0.1.1": {
+                "en": "Change PIN field to type password",
+                "de": "PIN-Feld als Passwort-Feld anzeigen",
+                "ru": "Измените PIN-код для ввода пароля",
+                "pt": "Mostrar o PIN como um campo de senha"
+            },
             "0.1.0": {
                 "en": "Bug with start/stop button fixed",
                 "de": "Fehler mit Start-/Stop-Knopf gefixt",
