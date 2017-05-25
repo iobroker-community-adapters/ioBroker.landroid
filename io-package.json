@@ -60,7 +60,7 @@
         ],
         "readme": "https://github.com/ldittmar81/ioBroker.landroid/blob/master/README.md",
         "loglevel": "info",
-        "type": "hardware",
+        "type": "garden",
         "authors": [
             "ldittmar <iobroker@lmdsoft.de>"
         ]
