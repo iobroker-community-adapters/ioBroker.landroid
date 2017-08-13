@@ -288,8 +288,12 @@ function checkStatus() {
         if (isAlive) {
             request(getOptions, function (error, response, body) {
                 if (!error && response.statusCode == 200) {
-                    data = JSON.parse(body);
-                    evaluateResponse();
+                    try{
+                        data = JSON.parse(body);                    
+                        evaluateResponse();
+                    }catch(e){
+                        adapter.log.warn(e);
+                    }
                 }
             });
         }

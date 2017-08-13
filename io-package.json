@@ -1,8 +1,14 @@
 {
     "common": {
         "name": "landroid",
-        "version": "0.1.1",
+        "version": "1.0.0",
         "news": {
+            "1.0.0": {
+                "en": "Fixed error with uncaught exception",
+                "de": "Fehler mit nicht abgefangene Ausnahme behoben",
+                "ru": "Исправлена ошибка с неперехваченного исключением",
+                "pt": "Corrigido o erro com exceção não capturada"
+            },
             "0.1.1": {
                 "en": "Change PIN field to type password",
                 "de": "PIN-Feld als Passwort-Feld anzeigen",
