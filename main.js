@@ -366,6 +366,8 @@ function main() {
 
         adapter.subscribeStates("mower.start");
         adapter.subscribeStates("mower.stop");
+        
+        createInfoObjects();
 
         var secs = adapter.config.poll;
         if (isNaN(secs) || secs < 1) {
