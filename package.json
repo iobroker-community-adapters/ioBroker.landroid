@@ -1,6 +1,6 @@
 {
   "name": "iobroker.landroid",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "ioBroker Worx Landroid Adapter",
   "author": {
     "name": "ldittmar",
@@ -20,7 +20,6 @@
     "url": "https://github.com/ldittmar81/ioBroker.landroid"
   },
   "dependencies": {
-    "ping": "^0.2.1",
     "request": "^2.79.0"
   },
   "devDependencies": {

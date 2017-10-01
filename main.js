@@ -15,7 +15,7 @@
 // you have to require the utils module and call adapter function
 var utils = require(__dirname + "/lib/utils"); // Get common adapter utils
 var request = require('request');
-var ping = require("ping");
+var ping = require(__dirname + '/lib/ping');
 
 // you have to call the adapter function and pass a options object
 // name has to be set and has to be equal to adapters folder name and main file name excluding extension
@@ -23,6 +23,7 @@ var ping = require("ping");
 var adapter = utils.adapter("landroid");
 
 var ip, pin, data, getOptions;
+var isConnected = null;
 
 // is called when adapter shuts down - callback has to be called under any circumstances!
 adapter.on("unload", function (callback) {
@@ -48,8 +49,7 @@ adapter.on("stateChange", function (id, state) {
 
     if (id === adapter.namespace + ".mower.start" && state.val) {
         startMower();
-    }
-    else if (id === adapter.namespace + ".mower.stop" && state.val) {
+    } else if (id === adapter.namespace + ".mower.stop" && state.val) {
         stopMower();
     }
 });
@@ -62,16 +62,15 @@ adapter.on("message", function (obj) {
             console.log("send command");
 
             // Send response in callback if required
-            if (obj.callback) adapter.sendTo(obj.from, obj.command, "Message received", obj.callback);
+            if (obj.callback)
+                adapter.sendTo(obj.from, obj.command, "Message received", obj.callback);
         }
     }
 });
 
 // is called when databases are connected and adapter received configuration.
 // start here!
-adapter.on("ready", function () {
-    main();
-});
+adapter.on("ready", main);
 
 function startMower() {
     adapter.log.info("Start Landroid");
@@ -85,7 +84,7 @@ function stopMower() {
     adapter.setState("mower.stop", {val: false, ack: true});
 }
 
-function doPost(postData){
+function doPost(postData) {
     var options = {
         url: "http://" + ip + ":80/jsondata.cgi",
         async: true,
@@ -104,7 +103,7 @@ function doPost(postData){
 }
 
 function evaluateCalendar(arrHour, arrMin, arrTime) {
-    if(arrHour && arrMin && arrTime) {
+    if (arrHour && arrMin && arrTime) {
         var weekday = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'];
         for (var i = 0; i < weekday.length; i++) {
             var starttime = (arrHour[i] < 10) ? "0" + arrHour[i] : arrHour[i];
@@ -118,7 +117,7 @@ function evaluateCalendar(arrHour, arrMin, arrTime) {
 
 function getStatus(statusArr, alarmArr) {
 
-    if(statusArr && alarmArr) {
+    if (statusArr && alarmArr) {
 
         var alarm = false;
         for (var i = 0; i < alarmArr.length; i++) {
@@ -130,56 +129,41 @@ function getStatus(statusArr, alarmArr) {
 
         if (statusArr[14] === 1 && !alarm) {
             return 'manual_stop';
-        }
-        else if (statusArr[5] === 1 && statusArr[13] === 0 && !alarm) {
+        } else if (statusArr[5] === 1 && statusArr[13] === 0 && !alarm) {
             return 'charging';
-        }
-        else if (statusArr[5] === 1 && statusArr[13] === 1 && !alarm) {
+        } else if (statusArr[5] === 1 && statusArr[13] === 1 && !alarm) {
             return 'charge_completed';
-        }
-        else if (statusArr[15] === 1 && !alarm) {
+        } else if (statusArr[15] === 1 && !alarm) {
             return 'going_home';
-        }
-        else if (alarmArr[0] === 1) {
+        } else if (alarmArr[0] === 1) {
             return 'blade_blocked';
-        }
-        else if (alarmArr[1] === 1) {
+        } else if (alarmArr[1] === 1) {
             return 'repositioning_error';
-        }
-        else if (alarmArr[2] === 1) {
+        } else if (alarmArr[2] === 1) {
             return 'outside_wire';
-        }
-        else if (alarmArr[3] === 1) {
+        } else if (alarmArr[3] === 1) {
             return 'blade_blocked';
-        }
-        else if (alarmArr[4] === 1) {
+        } else if (alarmArr[4] === 1) {
             return 'outside_wire';
-        }
-        else if (alarmArr[10] === 1) {
+        } else if (alarmArr[10] === 1) {
             return 'mower_tilted';
-        }
-        else if (alarmArr[5] === 1) {
+        } else if (alarmArr[5] === 1) {
             return 'mower_lifted';
-        }
-        else if (alarmArr[6] === 1 || alarmArr[7] === 1 || alarmArr[8] === 1) {
+        } else if (alarmArr[6] === 1 || alarmArr[7] === 1 || alarmArr[8] === 1) {
             return 'error';
-        }
-        else if (alarmArr[9] === 1) {
+        } else if (alarmArr[9] === 1) {
             return 'collision_sensor_blocked';
-        }
-        else if (alarmArr[11] === 1) {
+        } else if (alarmArr[11] === 1) {
             return 'charge_error';
-        }
-        else if (alarmArr[12] === 1) {
+        } else if (alarmArr[12] === 1) {
             return 'battery_error';
-        }
-        else {
+        } else {
             return 'mowing';
         }
     }
 }
 
-function procedewg796e(){
+function procedewg796e() {
     adapter.setObjectNotExists('mower.totalTime', {
         type: 'state',
         common: {
@@ -196,7 +180,7 @@ function procedewg796e(){
     adapter.setState("mower.totalTime", {val: data.ore_movimento * 0.1, ack: true});
 }
 
-function procedewg797e1(){
+function procedewg797e1() {
     adapter.setObjectNotExists('mower.distance', {
         type: 'state',
         common: {
@@ -252,10 +236,10 @@ function procedewg797e1(){
     adapter.setState("mower.message", {val: data.message, ack: true});
 }
 
-function createStates(){
-    if("ore_movimento" in data) {
+function createStates() {
+    if ("ore_movimento" in data) {
         procedewg796e();
-    }else{
+    } else {
         procedewg797e1();
     }
 }
@@ -268,8 +252,8 @@ function checkFirmware() {
 }
 
 function evaluateResponse() {
-    adapter.setState("lastsync", {val: new Date().toISOString(), ack: true});
-    adapter.setState("firmware", {val: checkFirmware(data), ack: true});
+    adapter.setState("info.lastsync", {val: new Date().toISOString(), ack: true});
+    adapter.setState("info.firmware", {val: checkFirmware(data), ack: true});
 
     evaluateCalendar(data.ora_on, data.min_on, data.ore_funz);
 
@@ -282,20 +266,32 @@ function evaluateResponse() {
     createStates(data);
 }
 
+function setConnected(_isConnected) {
+    if (isConnected !== _isConnected) {
+        isConnected = _isConnected;
+        adapter.setState('info.connection', {val: isConnected, ack: true});
+    }
+}
+
 function checkStatus() {
-    ping.sys.probe(ip, function (isAlive) {
-        adapter.setState("mower.connected", {val: isAlive, ack: true});
-        if (isAlive) {
-            request(getOptions, function (error, response, body) {
-                if (!error && response.statusCode == 200) {
-                    try{
-                        data = JSON.parse(body);                    
-                        evaluateResponse();
-                    }catch(e){
-                        adapter.log.warn(e);
+    ping.probe(ip, {log: adapter.log.debug}, function (err, result) {
+        if (err) {
+            adapter.log.error(err);
+        }
+        if (result) {
+            setConnected(result.alive);
+            if (result.alive) {
+                request(getOptions, function (error, response, body) {
+                    if (!error && response.statusCode == 200) {
+                        try {
+                            data = JSON.parse(body);
+                            evaluateResponse();
+                        } catch (e) {
+                            adapter.log.warn(e);
+                        }
                     }
-                }
-            });
+                });
+            }
         }
     });
 }
