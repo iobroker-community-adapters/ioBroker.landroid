@@ -266,6 +266,58 @@ function evaluateResponse() {
     createStates(data);
 }
 
+function createInfoObjects() {
+
+    adapter.delObject('mower.connected');
+    adapter.delObject('firmware');
+    adapter.delObject('lastsync');
+
+    adapter.setObjectNotExists('info', {
+        type: 'channel',
+        common: {
+            name: "Information",
+        },
+        native: {}
+    });
+    adapter.setObjectNotExists('info.connection', {
+        type: 'state',
+        common: {
+            name: "Landroid connected",
+            type: "boolean",
+            role: "indicator.connected",
+            read: true,
+            write: false,
+            def: false,
+            desc: "Is Landroid mower connected?"
+        },
+        native: {}
+    });
+    adapter.setObjectNotExists('info.lastsync', {
+        type: 'state',
+        common: {
+            name: "Last successful sync",
+            type: "string",
+            role: "value.datetime",
+            read: true,
+            write: false,
+            desc: "Last successful synchronization"
+        },
+        native: {}
+    });
+    adapter.setObjectNotExists('info.firmware', {
+        type: 'state',
+        common: {
+            name: "Firmware Version",
+            type: "string",
+            role: "meta.version",
+            read: true,
+            write: false,
+            desc: "Firmware Version"
+        },
+        native: {}
+    });
+}
+
 function setConnected(_isConnected) {
     if (isConnected !== _isConnected) {
         isConnected = _isConnected;
