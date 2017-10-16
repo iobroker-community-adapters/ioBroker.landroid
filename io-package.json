@@ -48,12 +48,13 @@
         },
         "title": "WORX Landroid adapter",
         "desc": {
-            "en": "ioBroker Landroid Adapter",
-            "de": "ioBroker Landroid Adapter",
-            "ru": "ioBroker Landroid драйвер как образец",
-            "pt": "ioBroker Landroid Adapter"
+            "en": "Worx Landroid mower Adapter",
+            "de": "Worx Landroid Rasenmäher Adapter",
+            "ru": "Worx Landroid драйвер как образец",
+            "pt": "Worx Landroid cortador de grama"
         },
         "license": "MIT",
+        "authors": ["ldittmar <iobroker@lmdsoft.de>"],
         "platform": "Javascript/Node.js",
         "mode": "daemon",
         "icon": "landroid.png",
