@@ -6,7 +6,6 @@ ioBroker.landroid
 [![Downloads](https://img.shields.io/npm/dm/iobroker.landroid.svg)](https://www.npmjs.com/package/iobroker.landroid)
 [![Dependency Status](https://img.shields.io/david/ldittmar81/iobroker.landroid.svg)](https://david-dm.org/ldittmar81/iobroker.landroid)
 [![Known Vulnerabilities](https://snyk.io/test/github/ldittmar81/ioBroker.landroid/badge.svg)](https://snyk.io/test/github/ldittmar81/ioBroker.landroid)
-[![bitHound Overall Score](https://www.bithound.io/github/ldittmar81/ioBroker.landroid/badges/score.svg)](https://www.bithound.io/github/ldittmar81/ioBroker.landroid)
 
 [![NPM](https://nodei.co/npm/iobroker.landroid.png?downloads=true)](https://nodei.co/npm/iobroker.landroid/)
 
@@ -18,6 +17,10 @@ Windows: [![AppVeyor](https://ci.appveyor.com/api/projects/status/github/ldittma
 =================
 
 This is an ioBroker adapter for your Worx Landroid mowing machine. It have been tested with a Landroid WG796E.
+
+## Feature Requests (please vote oder add new)
+
+[![Feature Requests](http://feathub.com/ldittmar81/ioBroker.landroid?format=svg)](http://feathub.com/ldittmar81/ioBroker.landroid)
 
 ## Changelog
 
