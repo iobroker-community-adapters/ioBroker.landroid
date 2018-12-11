@@ -24,6 +24,9 @@ This is an ioBroker adapter for your Worx Landroid mowing machine. It have been 
 
 ## Changelog
 
+#### 1.0.2
+* (ldittmar) Support of admin3
+
 #### 1.0.0
 * (ldittmar) Fixed little changes
 

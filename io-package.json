@@ -1,63 +1,126 @@
 {
     "common": {
         "name": "landroid",
-        "version": "1.0.1",
+        "version": "1.0.2",
         "news": {
+            "1.0.2": {
+                "en": "Support of admin3",
+                "de": "Unterstützung von admin3",
+                "ru": "Поддержка admin3",
+                "pt": "Suporte de admin3",
+                "nl": "Ondersteuning van admin3",
+                "fr": "Support de admin3",
+                "it": "Supporto di admin3",
+                "es": "Soporte de admin3",
+                "pl": "Wsparcie dla admin3"
+            },
             "1.0.0": {
                 "en": "Fixed error with uncaught exception",
                 "de": "Fehler mit nicht abgefangene Ausnahme behoben",
                 "ru": "Исправлена ошибка с неперехваченного исключением",
-                "pt": "Corrigido o erro com exceção não capturada"
+                "pt": "Corrigido o erro com exceção não capturada",
+                "pl": "Naprawiono błąd z niezamkniętym wyjątkiem",
+                "es": "Se corrigió el error con excepción no capturada",
+                "fr": "Correction d'erreur avec une exception non capturée",
+                "nl": "Vaste fout met niet-afgevangen uitzondering",
+                "it": "Risolto errore con eccezione non rilevata"
             },
             "0.1.1": {
                 "en": "Change PIN field to type password",
                 "de": "PIN-Feld als Passwort-Feld anzeigen",
                 "ru": "Измените PIN-код для ввода пароля",
-                "pt": "Mostrar o PIN como um campo de senha"
+                "pt": "Mostrar o PIN como um campo de senha",
+                "it": "Cambia il campo PIN per digitare la password",
+                "pl": "Wijzig het PIN-veld om het wachtwoord te typen",
+                "fr": "Modifier le champ PIN pour saisir le mot de passe",
+                "nl": "Wijzig het PIN-veld om het wachtwoord te typen",
+                "es": "Cambiar el campo PIN para escribir la contraseña"
             },
             "0.1.0": {
                 "en": "Bug with start/stop button fixed",
                 "de": "Fehler mit Start-/Stop-Knopf gefixt",
                 "ru": "Ошибка с кнопкой старт/стоп фиксированной",
-                "pt": "Erro com o botão para iniciar/parar corrigido"
+                "pt": "Erro com o botão para iniciar/parar corrigido",
+                "es": "Error con el botón de inicio / parada fijo",
+                "nl": "Bug met start / stop-knop hersteld",
+                "fr": "Bug avec bouton start / stop corrigé",
+                "pl": "Naprawiono błąd z przyciskiem start / stop",
+                "it": "Bug con il tasto start / stop risolto"
             },
             "0.0.4": {
                 "en": "bug fixes",
                 "de": "Bugfixes",
                 "ru": "исправлены ошибки",
-                "pt": "Correções de bugs"
+                "pt": "Correções de bugs",
+                "it": "correzioni di bug",
+                "nl": "bugfixes",
+                "fr": "corrections de bugs",
+                "es": "corrección de errores",
+                "pl": "poprawki błędów"
             },
             "0.0.3": {
                 "en": "Minor bug fixes / compatibility with the WG797E.1 mower",
                 "de": "kleinere Bugfixes / Kompatibilität zum WG797E.1 Mäher",
                 "ru": "незначительные исправления / совместимость для WG797E.1 косилкой",
-                "pt": "Pequenas correções de bugs / Compatibilidade com o cortador de grama WG797E.1"
+                "pt": "Pequenas correções de bugs / Compatibilidade com o cortador de grama WG797E.1",
+                "pl": "Drobne poprawki / kompatybilność z kosiarką WG797E.1",
+                "es": "Corrección de errores menores / compatibilidad con el cortacésped WG797E.1",
+                "fr": "Corrections de bugs mineurs / compatibilité avec la tondeuse WG797E.1",
+                "nl": "Kleine bugfixes / compatibiliteit met de WG797E.1-maaier",
+                "it": "Correzioni di bug minori / compatibilità con la falciatrice WG797E.1"
             },
             "0.0.2": {
                 "en": "All important informations are read out",
                 "de": "Alle wichtigen Informationen werden ausgelesen",
                 "ru": "Вся важная информация считывается",
-                "pt": "Todas as informações importantes são lidas"
+                "pt": "Todas as informações importantes são lidas",
+                "it": "Tutte le informazioni importanti vengono lette",
+                "nl": "Alle belangrijke informatie wordt voorgelezen",
+                "fr": "Toutes les informations importantes sont lues",
+                "es": "Se leen todas las informaciones importantes.",
+                "pl": "Wszystkie ważne informacje są odczytywane"
             },
             "0.0.1": {
-                "en": "initial adapter",
+                "en": "initial version",
                 "de": "Initiale Version",
                 "ru": "Первоначальный адаптер",
-                "pt": "Versão inicial"
+                "pt": "Versão inicial",
+                "fr": "Version initiale",
+                "nl": "Eerste release",
+                "it": "Versione iniziale",
+                "es": "Versión inicial",
+                "pl": "początkowa wersja"
             }
         },
         "title": "WORX Landroid adapter",
-        "desc": {
+        "titleLang": {
             "en": "Worx Landroid mower Adapter",
             "de": "Worx Landroid Rasenmäher Adapter",
             "ru": "Worx Landroid драйвер как образец",
-            "pt": "Worx Landroid cortador de grama"
+            "pt": "Worx Landroid cortador de grama",
+            "it": "Adattatore per tagliaerba Landro Worx",
+            "pl": "Kosiarkarka Worx Landroid Adapter",
+            "fr": "Adaptateur tondeuse Worx Landroid",
+            "es": "Adaptador de cortacésped Worx Landroid",
+            "nl": "Worx Landroid maaier adapter"
+        },
+        "desc": {
+            "en": "This is an ioBroker adapter for your Worx Landroid mowing machine. It have been tested with a Landroid WG796E.",
+            "de": "Dies ist ein ioBroker-Adapter für Ihre Worx Landroid-Mähmaschine. Es wurde mit einem Landroid WG796E getestet.",
+            "ru": "Это адаптер ioBroker для вашей косилки Worx Landroid. Он был протестирован с Landroid WG796E.",
+            "pt": "Este é um adaptador ioBroker para a sua gadanheira Worx Landroid. Foi testado com um Landroid WG796E.",
+            "it": "Questo è un adattatore ioBroker per la tua falciatrice Landro Worx. È stato testato con un Landroid WG796E.",
+            "pl": "Jest to adapter ioBroker do Twojej kosiarki Worx Landroid. Został przetestowany z urządzeniem Landroid WG796E.",
+            "fr": "Ceci est un adaptateur ioBroker pour votre tondeuse Worx Landroid. Il a été testé avec un Landroid WG796E.",
+            "es": "Este es un adaptador ioBroker para su máquina segadora Worx Landroid. Se ha probado con un Landroid WG796E.",
+            "nl": "Dit is een ioBroker-adapter voor uw Worx Landroid-maaimachine. Het is getest met een Landroid WG796E."
         },
         "license": "MIT",
         "authors": ["ldittmar <iobroker@lmdsoft.de>"],
         "platform": "Javascript/Node.js",
         "mode": "daemon",
         "icon": "landroid.png",
+        "materialize": true,
         "enabled": false,
         "extIcon": "https://raw.githubusercontent.com/ldittmar81/ioBroker.landroid/master/admin/landroid.png",
         "keywords": [

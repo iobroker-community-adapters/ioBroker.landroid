@@ -13,17 +13,17 @@
 "use strict";
 
 // you have to require the utils module and call adapter function
-var utils = require(__dirname + "/lib/utils"); // Get common adapter utils
-var request = require('request');
-var ping = require(__dirname + '/lib/ping');
+const utils = require(__dirname + "/lib/utils"); // Get common adapter utils
+const request = require('request');
+const ping = require(__dirname + '/lib/ping');
 
 // you have to call the adapter function and pass a options object
 // name has to be set and has to be equal to adapters folder name and main file name excluding extension
 // adapter will be restarted automatically every time as the configuration changed, e.g system.adapter.template.0
-var adapter = utils.Adapter("landroid");
+const adapter = utils.Adapter("landroid");
 
-var ip, pin, data, getOptions;
-var isConnected = null;
+let ip, pin, data, getOptions;
+let isConnected = null;
 
 // is called when adapter shuts down - callback has to be called under any circumstances!
 adapter.on("unload", function (callback) {
@@ -104,7 +104,7 @@ function doPost(postData) {
 
 function evaluateCalendar(arrHour, arrMin, arrTime) {
     if (arrHour && arrMin && arrTime) {
-        var weekday = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'];
+        const weekday = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'];
         for (var i = 0; i < weekday.length; i++) {
             var starttime = (arrHour[i] < 10) ? "0" + arrHour[i] : arrHour[i];
             starttime += ":";
@@ -119,8 +119,8 @@ function getStatus(statusArr, alarmArr) {
 
     if (statusArr && alarmArr) {
 
-        var alarm = false;
-        for (var i = 0; i < alarmArr.length; i++) {
+        let alarm = false;
+        for (let i = 0; i < alarmArr.length; i++) {
             if (alarmArr[i] === 1) {
                 alarm = true;
                 break;
@@ -369,7 +369,7 @@ function main() {
         
         createInfoObjects();
 
-        var secs = adapter.config.poll;
+        let secs = adapter.config.poll;
         if (isNaN(secs) || secs < 1) {
             secs = 10;
         }
