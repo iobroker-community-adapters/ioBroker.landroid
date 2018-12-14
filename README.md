@@ -1,5 +1,5 @@
 <h1>
-  <img src="https://github.com/ldittmar81/ioBroker.landroid/blob/master/admin/landroid.png" width="64"/>
+  <img src="https://raw.githubusercontent.com/ldittmar81/ioBroker.landroid/master/admin/landroid.png" width="64"/>
   ioBroker.landroid
 </h1>
 
