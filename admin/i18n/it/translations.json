@@ -1,7 +1,8 @@
 {
-  "IP": "",
-  "Intervall": "",
-  "Settings": "",
-  "WORX Landroid adapter settings": "",
-  "pinCode": ""
+  "IP": "Indirizzo IP della falciatrice da giardino Worx Landroid",
+  "Intervall": "Intervallo di query in secondi",
+  "Settings": "impostazioni",
+  "WORX Landroid adapter settings": "Impostazioni dell'adattatore WORROX Landroid",
+  "on save adapter restarts with new config immediately": "su save adapter si riavvia immediatamente con la nuova configurazione",
+  "pinCode": "PIN a quattro cifre della falciatrice"
 }

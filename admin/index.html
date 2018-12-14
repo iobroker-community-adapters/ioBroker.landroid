@@ -10,36 +10,10 @@
 <link rel="stylesheet" type="text/css" href="../../css/adapter.css"/>
 <script type="text/javascript" src="../../js/translate.js"></script>
 <script type="text/javascript" src="../../js/adapter-settings.js"></script>
+<script type="text/javascript" src="words.js"></script>
 
 <!-- you have to define 2 functions in the global scope: -->
 <script type="text/javascript">
-
-    // Dictionary (systemDictionary is global variable from adapter-settings.js)
-    systemDictionary = {
-        "WORX Landroid adapter settings": {
-            "de": "WORX Landroid Einstellungen",
-            "ru": "Настройки WORX Landroid"
-        },
-        "IP": {
-            "de": "IP Adresse des Worx Landroid Rasenmähers",
-            "en": "IP address of the Worx Landroid lawn mower",
-            "ru": "IP-адрес газонокосилки Worx Landroid"
-        },
-        "pinCode": {
-            "de": "Vierstellige PIN des Rasenmähers",
-            "en": "Four-digit PIN of lawn mower",
-            "ru": "Четыре-значный PIN-код газонокосилки"
-        },
-        "Intervall": {
-            "de": "Abfrageintervall in Sekunden",
-            "en": "Query interval in seconds",
-            "ru": "Интервал опроса в секундах"
-        },
-        "Settings": {
-            "de": "Einstellungen",
-            "ru": "Настройки"
-        }
-    };
 
     // the function loadSettings has to exist ...
     function load(settings, onChange) {
@@ -99,14 +73,14 @@
 
     <table>
         <tr>
-            <td class="translate"><label class="translate" for="pin">pinCode</label></td>
+            <td><label class="translate" for="pin">pinCode</label></td>
             <td><input class="value" id="pin" placeholder="xxxx" type="password" size="6" maxlength="4"/></td>
         </tr>
     </table>
 
     <table>
         <tr>
-            <td class="translate"><label class="translate" for="poll">Intervall</label></td>
+            <td><label class="translate" for="poll">Intervall</label></td>
             <td>
                 <input class="value" id="poll" type="text" size="6" maxlength="4"/>
             </td>

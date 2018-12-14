@@ -1,7 +1,8 @@
 {
-  "IP": "",
-  "Intervall": "",
-  "Settings": "",
-  "WORX Landroid adapter settings": "",
-  "pinCode": ""
+  "IP": "Adresse IP de la tondeuse à gazon Worx Landroid",
+  "Intervall": "Intervalle de requête en secondes",
+  "Settings": "Réglages",
+  "WORX Landroid adapter settings": "Paramètres de l'adaptateur WORX Landroid",
+  "on save adapter restarts with new config immediately": "sur save, l'adaptateur redémarre immédiatement avec la nouvelle configuration",
+  "pinCode": "NIP à quatre chiffres de la tondeuse à gazon"
 }

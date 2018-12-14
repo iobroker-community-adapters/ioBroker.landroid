@@ -1,7 +1,8 @@
 {
-  "IP": "",
-  "Intervall": "",
-  "Settings": "",
-  "WORX Landroid adapter settings": "",
-  "pinCode": ""
+  "IP": "Adres IP kosiarki Worx Landroid",
+  "Intervall": "Interwał zapytania w sekundach",
+  "Settings": "Ustawienia",
+  "WORX Landroid adapter settings": "Ustawienia adaptera WORX Landroid",
+  "on save adapter restarts with new config immediately": "na karcie save natychmiast uruchamia się z nową konfiguracją",
+  "pinCode": "Czterocyfrowy PIN kosiarki"
 }
