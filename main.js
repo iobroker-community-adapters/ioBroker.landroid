@@ -17,60 +17,69 @@ const utils = require(__dirname + "/lib/utils"); // Get common adapter utils
 const request = require('request');
 const ping = require(__dirname + '/lib/ping');
 
-// you have to call the adapter function and pass a options object
-// name has to be set and has to be equal to adapters folder name and main file name excluding extension
-// adapter will be restarted automatically every time as the configuration changed, e.g system.adapter.template.0
-const adapter = utils.Adapter("landroid");
-
 let ip, pin, data, getOptions;
 let isConnected = null;
 
-// is called when adapter shuts down - callback has to be called under any circumstances!
-adapter.on("unload", function (callback) {
-    try {
-        adapter.log.info("cleaned everything up...");
-        callback();
-    } catch (e) {
-        callback();
-    }
-});
+// you have to call the adapter function and pass a options object
+// name has to be set and has to be equal to adapters folder name and main file name excluding extension
+// adapter will be restarted automatically every time as the configuration changed, e.g system.adapter.template.0
+let adapter;
+function startAdapter(options) {
+    options = options || {};
+    Object.assign(options, {
+        name: "landroid"
+    });
+    adapter = new utils.Adapter(options);
 
-// is called if a subscribed object changes
-adapter.on("objectChange", function (id, obj) {
-    // Warning, obj can be null if it was deleted
-    adapter.log.info("objectChange " + id + " " + JSON.stringify(obj));
-});
-
-// is called if a subscribed state changes
-adapter.on("stateChange", function (id, state) {
-    if (!state) {
-        return;
-    }
-
-    if (id === adapter.namespace + ".mower.start" && state.val) {
-        startMower();
-    } else if (id === adapter.namespace + ".mower.stop" && state.val) {
-        stopMower();
-    }
-});
-
-// Some message was sent to adapter instance over message box. Used by email, pushover, text2speech, ...
-adapter.on("message", function (obj) {
-    if (typeof obj == "object" && obj.message) {
-        if (obj.command == "send") {
-            // e.g. send email or pushover or whatever
-            console.log("send command");
-
-            // Send response in callback if required
-            if (obj.callback)
-                adapter.sendTo(obj.from, obj.command, "Message received", obj.callback);
+    // is called when adapter shuts down - callback has to be called under any circumstances!
+    adapter.on("unload", function (callback) {
+        try {
+            adapter.log.info("cleaned everything up...");
+            callback();
+        } catch (e) {
+            callback();
         }
-    }
-});
+    });
 
-// is called when databases are connected and adapter received configuration.
-// start here!
-adapter.on("ready", main);
+    // is called if a subscribed object changes
+    adapter.on("objectChange", function (id, obj) {
+        // Warning, obj can be null if it was deleted
+        adapter.log.info("objectChange " + id + " " + JSON.stringify(obj));
+    });
+
+    // is called if a subscribed state changes
+    adapter.on("stateChange", function (id, state) {
+        if (!state) {
+            return;
+        }
+
+        if (id === adapter.namespace + ".mower.start" && state.val) {
+            startMower();
+        } else if (id === adapter.namespace + ".mower.stop" && state.val) {
+            stopMower();
+        }
+    });
+
+    // Some message was sent to adapter instance over message box. Used by email, pushover, text2speech, ...
+    adapter.on("message", function (obj) {
+        if (typeof obj == "object" && obj.message) {
+            if (obj.command == "send") {
+                // e.g. send email or pushover or whatever
+                console.log("send command");
+
+                // Send response in callback if required
+                if (obj.callback)
+                    adapter.sendTo(obj.from, obj.command, "Message received", obj.callback);
+            }
+        }
+    });
+
+    // is called when databases are connected and adapter received configuration.
+    // start here!
+    adapter.on("ready", main);
+
+    return adapter;
+}
 
 function startMower() {
     adapter.log.info("Start Landroid");
@@ -92,7 +101,7 @@ function doPost(postData) {
         cache: false,
         body: postData,
         headers: {'Content-length': postData.length, 'Content-type': 'application/x-www-form-urlencoded', 'Accept': 'application/json', "Authorization": 'Basic ' + new Buffer('admin:' + pin).toString('base64')}
-    }
+    };
 
     request(options, function (error, response, body) {
         if (!error && response.statusCode == 200) {
@@ -275,7 +284,7 @@ function createInfoObjects() {
     adapter.setObjectNotExists('info', {
         type: 'channel',
         common: {
-            name: "Information",
+            name: "Information"
         },
         native: {}
     });
@@ -366,7 +375,7 @@ function main() {
 
         adapter.subscribeStates("mower.start");
         adapter.subscribeStates("mower.stop");
-        
+
         createInfoObjects();
 
         let secs = adapter.config.poll;
@@ -379,5 +388,12 @@ function main() {
     } else {
         adapter.log.error("Please configure the Landroid Adapter");
     }
-
 }
+
+// If started as allInOne/compact mode => return function to create instance
+if (module && module.parent) {
+    module.exports = startAdapter;
+} else {
+    // or start the instance directly
+    startAdapter();
+} 

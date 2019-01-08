@@ -1,8 +1,19 @@
 {
     "common": {
         "name": "landroid",
-        "version": "1.0.2",
+        "version": "1.0.3",
         "news": {
+            "1.0.3": {
+                "en": "compact mode compatibility added",
+                "de": "Kompaktmodus-Kompatibilität hinzugefügt",
+                "ru": "добавлена ​​совместимость с компактным режимом",
+                "pt": "compatibilidade de modo compacto adicionada",
+                "nl": "compatibiliteit met compacte modus toegevoegd",
+                "fr": "Compatibilité en mode compact ajoutée",
+                "it": "aggiunta la compatibilità in modalità compatta",
+                "es": "compatibilidad de modo compacto agregado",
+                "pl": "Dodano kompatybilność w trybie kompaktowym"
+            },
             "1.0.2": {
                 "en": "Support of admin3",
                 "de": "Unterstützung von admin3",
@@ -115,6 +126,7 @@
             "es": "Este es un adaptador ioBroker para su máquina segadora Worx Landroid. Se ha probado con un Landroid WG796E.",
             "nl": "Dit is een ioBroker-adapter voor uw Worx Landroid-maaimachine. Het is getest met een Landroid WG796E."
         },
+        "compact": true,
         "license": "MIT",
         "authors": ["ldittmar <iobroker@lmdsoft.de>"],
         "platform": "Javascript/Node.js",
