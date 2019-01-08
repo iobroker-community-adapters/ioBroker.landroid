@@ -1,26 +1,11 @@
-// Dictionary (systemDictionary is global variable from adapter-settings.js)
+/*global systemDictionary:true */
+'use strict';
+
 systemDictionary = {
-        "WORX Landroid adapter settings": {
-            "de": "WORX Landroid Einstellungen",
-            "ru": "Настройки WORX Landroid"
-        },
-        "IP": {
-            "de": "IP Adresse des Worx Landroid Rasenmähers",
-            "en": "IP address of the Worx Landroid lawn mower",
-            "ru": "IP-адрес газонокосилки Worx Landroid"
-        },
-        "pinCode": {
-            "de": "Vierstellige PIN des Rasenmähers",
-            "en": "Four-digit PIN of lawn mower",
-            "ru": "Четыре-значный PIN-код газонокосилки"
-        },
-        "Intervall": {
-            "de": "Abfrageintervall in Sekunden",
-            "en": "Query interval in seconds",
-            "ru": "Интервал опроса в секундах"
-        },
-        "Settings": {
-            "de": "Einstellungen",
-            "ru": "Настройки"
-        }
-    };
+    "IP": {                                          "en": "IP address of the Worx Landroid lawn mower",      "de": "IP Adresse des Worx Landroid Rasenmähers",        "ru": "IP-адрес газонокосилки Worx Landroid",            "pt": "Endereço IP do cortador de grama Worx Landroid",  "nl": "IP-adres van de Worx Landroid grasmaaier",        "fr": "Adresse IP de la tondeuse à gazon Worx Landroid", "it": "Indirizzo IP della falciatrice da giardino Worx Landroid", "es": "Dirección IP de la cortadora de césped Worx Landroid", "pl": "Adres IP kosiarki Worx Landroid"},
+    "Intervall": {                                   "en": "Query interval in seconds",                       "de": "Abfrageintervall in Sekunden",                    "ru": "Интервал запроса в секундах",                     "pt": "Intervalo de consulta em segundos",               "nl": "Query-interval in seconden",                      "fr": "Intervalle de requête en secondes",               "it": "Intervallo di query in secondi",                  "es": "Intervalo de consulta en segundos",               "pl": "Interwał zapytania w sekundach"},
+    "Settings": {                                    "en": "Settings",                                        "de": "Einstellungen",                                   "ru": "настройки",                                       "pt": "Definições",                                      "nl": "instellingen",                                    "fr": "Réglages",                                        "it": "impostazioni",                                    "es": "Ajustes",                                         "pl": "Ustawienia"},
+    "WORX Landroid adapter settings": {              "en": "WORX Landroid adapter settings",                  "de": "WORX Landroid Einstellungen",                     "ru": "Настройки адаптера WORX Landroid",                "pt": "Configurações do adaptador WORX Landroid",        "nl": "WORX Landroid-adapterinstellingen",               "fr": "Paramètres de l'adaptateur WORX Landroid",        "it": "Impostazioni dell'adattatore WORROX Landroid",    "es": "Configuraciones del adaptador WORX Landroid",     "pl": "Ustawienia adaptera WORX Landroid"},
+    "pinCode": {                                     "en": "Four-digit PIN of lawn mower",                    "de": "Vierstellige PIN des Rasenmähers",                "ru": "Четырехзначный PIN-код газонокосилки",            "pt": "PIN de quatro dígitos do cortador de grama",      "nl": "Viercijferige pincode van grasmaaier",            "fr": "NIP à quatre chiffres de la tondeuse à gazon",    "it": "PIN a quattro cifre della falciatrice",           "es": "PIN de cuatro dígitos de la cortadora de césped", "pl": "Czterocyfrowy PIN kosiarki"},
+    "on save adapter restarts with new config immediately": {"en": "on save adapter restarts with new config immediately", "de": "Beim Speichern von Einstellungen der Adapter wird sofort neu gestartet.", "ru": "при сохранении адаптер перезапускается с новым конфигом немедленно", "pt": "on save adapter reinicia com nova configuração imediatamente", "nl": "on save-adapter wordt onmiddellijk opnieuw opgestart met nieuwe config", "fr": "sur save, l'adaptateur redémarre immédiatement avec la nouvelle configuration", "it": "su save adapter si riavvia immediatamente con la nuova configurazione", "es": "en guardar adaptador se reinicia con nueva configuración inmediatamente", "pl": "na karcie save natychmiast uruchamia się z nową konfiguracją"},
+};

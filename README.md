@@ -1,6 +1,7 @@
-![Logo](admin/landroid.png)
-ioBroker.landroid
-=============
+<h1>
+  <img src="https://raw.githubusercontent.com/ldittmar81/ioBroker.landroid/master/admin/landroid.png" width="64"/>
+  ioBroker.landroid
+</h1>
 
 [![NPM version](http://img.shields.io/npm/v/iobroker.landroid.svg)](https://www.npmjs.com/package/iobroker.landroid)
 [![Downloads](https://img.shields.io/npm/dm/iobroker.landroid.svg)](https://www.npmjs.com/package/iobroker.landroid)
@@ -13,14 +14,9 @@ ioBroker.landroid
 Windows: [![AppVeyor](https://ci.appveyor.com/api/projects/status/github/ldittmar81/ioBroker.landroid?branch=master&svg=true)](https://ci.appveyor.com/project/ldittmar81/ioBroker-landroid/)
 
 
-### A Worx Landroid adapter for ioBroker
-=================
+## A Worx Landroid adapter for ioBroker
 
 This is an ioBroker adapter for your Worx Landroid mowing machine. It have been tested with a Landroid WG796E.
-
-## Feature Requests (please vote oder add new)
-
-[![Feature Requests](http://feathub.com/ldittmar81/ioBroker.landroid?format=svg)](http://feathub.com/ldittmar81/ioBroker.landroid)
 
 ## Changelog
 
@@ -54,7 +50,7 @@ This is an ioBroker adapter for your Worx Landroid mowing machine. It have been 
 ## License
 The MIT License (MIT)
 
-Copyright (c) 2017 ldittmar <iobroker@lmdsoft.de>
+Copyright (c) 2018 ldittmar <iobroker@lmdsoft.de>
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

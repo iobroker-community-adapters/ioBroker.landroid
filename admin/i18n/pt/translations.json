@@ -1,7 +1,8 @@
 {
-  "IP": "",
-  "Intervall": "",
-  "Settings": "",
-  "WORX Landroid adapter settings": "",
-  "pinCode": ""
+  "IP": "Endereço IP do cortador de grama Worx Landroid",
+  "Intervall": "Intervalo de consulta em segundos",
+  "Settings": "Definições",
+  "WORX Landroid adapter settings": "Configurações do adaptador WORX Landroid",
+  "on save adapter restarts with new config immediately": "on save adapter reinicia com nova configuração imediatamente",
+  "pinCode": "PIN de quatro dígitos do cortador de grama"
 }

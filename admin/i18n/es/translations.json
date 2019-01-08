@@ -1,7 +1,8 @@
 {
-  "IP": "",
-  "Intervall": "",
-  "Settings": "",
-  "WORX Landroid adapter settings": "",
-  "pinCode": ""
+  "IP": "Dirección IP de la cortadora de césped Worx Landroid",
+  "Intervall": "Intervalo de consulta en segundos",
+  "Settings": "Ajustes",
+  "WORX Landroid adapter settings": "Configuraciones del adaptador WORX Landroid",
+  "on save adapter restarts with new config immediately": "en guardar adaptador se reinicia con nueva configuración inmediatamente",
+  "pinCode": "PIN de cuatro dígitos de la cortadora de césped"
 }
