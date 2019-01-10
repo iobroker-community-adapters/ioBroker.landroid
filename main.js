@@ -27,56 +27,45 @@ let adapter;
 function startAdapter(options) {
     options = options || {};
     Object.assign(options, {
-        name: "landroid"
+        name: "landroid",
+        unload: function (callback) {
+            try {
+                adapter.log.info("cleaned everything up...");
+                callback();
+            } catch (e) {
+                callback();
+            }
+        },
+        objectChange: function (id, obj) {
+            // Warning, obj can be null if it was deleted
+            adapter.log.info("objectChange " + id + " " + JSON.stringify(obj));
+        },
+        stateChange: function (id, state) {
+            if (!state) {
+                return;
+            }
+
+            if (id === adapter.namespace + ".mower.start" && state.val) {
+                startMower();
+            } else if (id === adapter.namespace + ".mower.stop" && state.val) {
+                stopMower();
+            }
+        },
+        message: function (obj) {
+            if (typeof obj == "object" && obj.message) {
+                if (obj.command == "send") {
+                    // e.g. send email or pushover or whatever
+                    console.log("send command");
+
+                    // Send response in callback if required
+                    if (obj.callback)
+                        adapter.sendTo(obj.from, obj.command, "Message received", obj.callback);
+                }
+            }
+        },
+        ready: main
     });
     adapter = new utils.Adapter(options);
-
-    // is called when adapter shuts down - callback has to be called under any circumstances!
-    adapter.on("unload", function (callback) {
-        try {
-            adapter.log.info("cleaned everything up...");
-            callback();
-        } catch (e) {
-            callback();
-        }
-    });
-
-    // is called if a subscribed object changes
-    adapter.on("objectChange", function (id, obj) {
-        // Warning, obj can be null if it was deleted
-        adapter.log.info("objectChange " + id + " " + JSON.stringify(obj));
-    });
-
-    // is called if a subscribed state changes
-    adapter.on("stateChange", function (id, state) {
-        if (!state) {
-            return;
-        }
-
-        if (id === adapter.namespace + ".mower.start" && state.val) {
-            startMower();
-        } else if (id === adapter.namespace + ".mower.stop" && state.val) {
-            stopMower();
-        }
-    });
-
-    // Some message was sent to adapter instance over message box. Used by email, pushover, text2speech, ...
-    adapter.on("message", function (obj) {
-        if (typeof obj == "object" && obj.message) {
-            if (obj.command == "send") {
-                // e.g. send email or pushover or whatever
-                console.log("send command");
-
-                // Send response in callback if required
-                if (obj.callback)
-                    adapter.sendTo(obj.from, obj.command, "Message received", obj.callback);
-            }
-        }
-    });
-
-    // is called when databases are connected and adapter received configuration.
-    // start here!
-    adapter.on("ready", main);
 
     return adapter;
 }
@@ -396,4 +385,4 @@ if (module && module.parent) {
 } else {
     // or start the instance directly
     startAdapter();
-} 
+}

@@ -1,0 +1,8 @@
+{
+  "IP": "Worx Landroid割草机的IP地址",
+  "Intervall": "查询间隔（秒）",
+  "Settings": "设置",
+  "WORX Landroid adapter settings": "WORX Landroid适配器设置",
+  "on save adapter restarts with new config immediately": "保存适配器立即重新启动新配置",
+  "pinCode": "割草机的四位数PIN"
+}
