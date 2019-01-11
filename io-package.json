@@ -12,7 +12,8 @@
                 "fr": "Compatibilité en mode compact ajoutée",
                 "it": "aggiunta la compatibilità in modalità compatta",
                 "es": "compatibilidad de modo compacto agregado",
-                "pl": "Dodano kompatybilność w trybie kompaktowym"
+                "pl": "Dodano kompatybilność w trybie kompaktowym",
+                "zh-cn": "增加了紧凑模式兼容性"
             },
             "1.0.2": {
                 "en": "Support of admin3",
@@ -23,7 +24,8 @@
                 "fr": "Support de admin3",
                 "it": "Supporto di admin3",
                 "es": "Soporte de admin3",
-                "pl": "Wsparcie dla admin3"
+                "pl": "Wsparcie dla admin3",
+                "zh-cn": "支持管理员3"
             },
             "1.0.0": {
                 "en": "Fixed error with uncaught exception",
@@ -34,7 +36,8 @@
                 "es": "Se corrigió el error con excepción no capturada",
                 "fr": "Correction d'erreur avec une exception non capturée",
                 "nl": "Vaste fout met niet-afgevangen uitzondering",
-                "it": "Risolto errore con eccezione non rilevata"
+                "it": "Risolto errore con eccezione non rilevata",
+                "zh-cn": "修复了未捕获异常的错误"
             },
             "0.1.1": {
                 "en": "Change PIN field to type password",
@@ -45,7 +48,8 @@
                 "pl": "Wijzig het PIN-veld om het wachtwoord te typen",
                 "fr": "Modifier le champ PIN pour saisir le mot de passe",
                 "nl": "Wijzig het PIN-veld om het wachtwoord te typen",
-                "es": "Cambiar el campo PIN para escribir la contraseña"
+                "es": "Cambiar el campo PIN para escribir la contraseña",
+                "zh-cn": "更改PIN字段以键入密码"
             },
             "0.1.0": {
                 "en": "Bug with start/stop button fixed",
@@ -56,7 +60,8 @@
                 "nl": "Bug met start / stop-knop hersteld",
                 "fr": "Bug avec bouton start / stop corrigé",
                 "pl": "Naprawiono błąd z przyciskiem start / stop",
-                "it": "Bug con il tasto start / stop risolto"
+                "it": "Bug con il tasto start / stop risolto",
+                "zh-cn": "修复了启动/停止按钮的错误"
             },
             "0.0.4": {
                 "en": "bug fixes",
@@ -67,7 +72,8 @@
                 "nl": "bugfixes",
                 "fr": "corrections de bugs",
                 "es": "corrección de errores",
-                "pl": "poprawki błędów"
+                "pl": "poprawki błędów",
+                "zh-cn": "bug修复"
             },
             "0.0.3": {
                 "en": "Minor bug fixes / compatibility with the WG797E.1 mower",
@@ -78,7 +84,8 @@
                 "es": "Corrección de errores menores / compatibilidad con el cortacésped WG797E.1",
                 "fr": "Corrections de bugs mineurs / compatibilité avec la tondeuse WG797E.1",
                 "nl": "Kleine bugfixes / compatibiliteit met de WG797E.1-maaier",
-                "it": "Correzioni di bug minori / compatibilità con la falciatrice WG797E.1"
+                "it": "Correzioni di bug minori / compatibilità con la falciatrice WG797E.1",
+                "zh-cn": "与WG797E.1割草机的小错误修复/兼容性"
             },
             "0.0.2": {
                 "en": "All important informations are read out",
@@ -89,7 +96,8 @@
                 "nl": "Alle belangrijke informatie wordt voorgelezen",
                 "fr": "Toutes les informations importantes sont lues",
                 "es": "Se leen todas las informaciones importantes.",
-                "pl": "Wszystkie ważne informacje są odczytywane"
+                "pl": "Wszystkie ważne informacje są odczytywane",
+                "zh-cn": "读出所有重要信息"
             },
             "0.0.1": {
                 "en": "initial version",
@@ -100,7 +108,8 @@
                 "nl": "Eerste release",
                 "it": "Versione iniziale",
                 "es": "Versión inicial",
-                "pl": "początkowa wersja"
+                "pl": "początkowa wersja",
+                "zh-cn": "初始版本"
             }
         },
         "title": "WORX Landroid adapter",
@@ -113,7 +122,8 @@
             "pl": "Kosiarkarka Worx Landroid Adapter",
             "fr": "Adaptateur tondeuse Worx Landroid",
             "es": "Adaptador de cortacésped Worx Landroid",
-            "nl": "Worx Landroid maaier adapter"
+            "nl": "Worx Landroid maaier adapter",
+            "zh-cn": "Worx Landroid割草机适配器"
         },
         "desc": {
             "en": "This is an ioBroker adapter for your Worx Landroid mowing machine. It have been tested with a Landroid WG796E.",
@@ -124,7 +134,8 @@
             "pl": "Jest to adapter ioBroker do Twojej kosiarki Worx Landroid. Został przetestowany z urządzeniem Landroid WG796E.",
             "fr": "Ceci est un adaptateur ioBroker pour votre tondeuse Worx Landroid. Il a été testé avec un Landroid WG796E.",
             "es": "Este es un adaptador ioBroker para su máquina segadora Worx Landroid. Se ha probado con un Landroid WG796E.",
-            "nl": "Dit is een ioBroker-adapter voor uw Worx Landroid-maaimachine. Het is getest met een Landroid WG796E."
+            "nl": "Dit is een ioBroker-adapter voor uw Worx Landroid-maaimachine. Het is getest met een Landroid WG796E.",
+            "zh-cn": "这是适用于Worx Landroid割草机的ioBroker适配器。 它已经过Landroid WG796E的测试。"
         },
         "compact": true,
         "license": "MIT",
