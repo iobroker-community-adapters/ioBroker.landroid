@@ -1,8 +1,8 @@
 {
-  "IP": "IP address of the Worx Landroid lawn mower",
-  "Intervall": "Query interval in seconds",
-  "Settings": "Settings",
-  "WORX Landroid adapter settings": "WORX Landroid adapter settings",
-  "on save adapter restarts with new config immediately": "on save adapter restarts with new config immediately",
-  "pinCode": "Four-digit PIN of lawn mower"
+    "IP": "IP address of the Worx Landroid lawn mower",
+    "Intervall": "Query interval in seconds",
+    "Settings": "Settings",
+    "WORX Landroid adapter settings": "WORX Landroid adapter settings",
+    "on save adapter restarts with new config immediately": "on save adapter restarts with new config immediately",
+    "pinCode": "Four-digit PIN of lawn mower"
 }

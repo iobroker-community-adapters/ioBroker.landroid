@@ -1,8 +1,8 @@
 {
-  "IP": "IP-адрес газонокосилки Worx Landroid",
-  "Intervall": "Интервал запроса в секундах",
-  "Settings": "настройки",
-  "WORX Landroid adapter settings": "Настройки адаптера WORX Landroid",
-  "on save adapter restarts with new config immediately": "при сохранении адаптер перезапускается с новым конфигом немедленно",
-  "pinCode": "Четырехзначный PIN-код газонокосилки"
+    "IP": "IP-адрес газонокосилки Worx Landroid",
+    "Intervall": "Интервал запроса в секундах",
+    "Settings": "настройки",
+    "WORX Landroid adapter settings": "Настройки адаптера WORX Landroid",
+    "on save adapter restarts with new config immediately": "при сохранении адаптер перезапускается с новым конфигом немедленно",
+    "pinCode": "Четырехзначный PIN-код газонокосилки"
 }

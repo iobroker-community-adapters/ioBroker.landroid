@@ -6,7 +6,7 @@
     "name": "ldittmar",
     "email": "iobroker@lmdsoft.de"
   },
-  "homepage": "https://github.com/ldittmar81/ioBroker.landroid",
+  "homepage": "https://github.com/iobroker-community-adapters/ioBroker.landroid",
   "license": "MIT",
   "keywords": [
     "ioBroker",
@@ -17,7 +17,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/ldittmar81/ioBroker.landroid"
+    "url": "https://github.com/iobroker-community-adapters/ioBroker.landroid"
   },
   "dependencies": {
     "rss-parser": "^3.6.0"
@@ -33,7 +33,7 @@
     "test": "node node_modules/mocha/bin/mocha --exit"
   },
   "bugs": {
-    "url": "https://github.com/ldittmar81/ioBroker.landroid/issues"
+    "url": "https://github.com/iobroker-community-adapters/ioBroker.landroid/issues"
   },
   "readmeFilename": "README.md"
 }

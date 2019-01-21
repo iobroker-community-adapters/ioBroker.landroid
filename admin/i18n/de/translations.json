@@ -1,8 +1,8 @@
 {
-  "IP": "IP Adresse des Worx Landroid Rasenmähers",
-  "Intervall": "Abfrageintervall in Sekunden",
-  "Settings": "Einstellungen",
-  "WORX Landroid adapter settings": "WORX Landroid Einstellungen",
-  "on save adapter restarts with new config immediately": "Beim Speichern von Einstellungen der Adapter wird sofort neu gestartet.",
-  "pinCode": "Vierstellige PIN des Rasenmähers"
+    "IP": "IP Adresse des Worx Landroid Rasenmähers",
+    "Intervall": "Abfrageintervall in Sekunden",
+    "Settings": "Einstellungen",
+    "WORX Landroid adapter settings": "WORX Landroid Einstellungen",
+    "on save adapter restarts with new config immediately": "Beim Speichern von Einstellungen der Adapter wird sofort neu gestartet.",
+    "pinCode": "Vierstellige PIN des Rasenmähers"
 }

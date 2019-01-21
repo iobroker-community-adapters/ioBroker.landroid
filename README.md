@@ -1,17 +1,18 @@
 <h1>
-  <img src="https://raw.githubusercontent.com/ldittmar81/ioBroker.landroid/master/admin/landroid.png" width="64"/>
+  <img src="https://raw.githubusercontent.com/iobroker-community-adapters/ioBroker.landroid/master/admin/landroid.png" width="64"/>
   ioBroker.landroid
 </h1>
 
 [![NPM version](http://img.shields.io/npm/v/iobroker.landroid.svg)](https://www.npmjs.com/package/iobroker.landroid)
 [![Downloads](https://img.shields.io/npm/dm/iobroker.landroid.svg)](https://www.npmjs.com/package/iobroker.landroid)
-[![Dependency Status](https://img.shields.io/david/ldittmar81/iobroker.landroid.svg)](https://david-dm.org/ldittmar81/iobroker.landroid)
-[![Known Vulnerabilities](https://snyk.io/test/github/ldittmar81/ioBroker.landroid/badge.svg)](https://snyk.io/test/github/ldittmar81/ioBroker.landroid)
+[![Dependency Status](https://img.shields.io/david/iobroker-community-adapters/iobroker.landroid.svg)](https://david-dm.org/iobroker-community-adapters/iobroker.landroid)
+[![Known Vulnerabilities](https://snyk.io/test/github/iobroker-community-adapters/ioBroker.landroid/badge.svg)](https://snyk.io/test/github/iobroker-community-adapters/ioBroker.landroid)
 
 [![NPM](https://nodei.co/npm/iobroker.landroid.png?downloads=true)](https://nodei.co/npm/iobroker.landroid/)
 
-**Tests:** Linux/Mac: [![Travis-CI](http://img.shields.io/travis/ldittmar81/ioBroker.landroid/master.svg)](https://travis-ci.org/ldittmar81/ioBroker.landroid)
-Windows: [![AppVeyor](https://ci.appveyor.com/api/projects/status/github/ldittmar81/ioBroker.landroid?branch=master&svg=true)](https://ci.appveyor.com/project/ldittmar81/ioBroker-landroid/) [![Greenkeeper badge](https://badges.greenkeeper.io/ldittmar81/ioBroker.landroid.svg)](https://greenkeeper.io/)
+**Tests:** Linux/Mac: [![Travis-CI](http://img.shields.io/travis/iobroker-community-adapters/ioBroker.landroid/master.svg)](https://travis-ci.org/iobroker-community-adapters/ioBroker.landroid)
+Windows: [![AppVeyor](https://ci.appveyor.com/api/projects/status/github/iobroker-community-adapters/ioBroker.landroid?branch=master&svg=true)](https://ci.appveyor.com/project/iobroker-community-adapters/ioBroker-landroid/) 
+[![Greenkeeper badge](https://badges.greenkeeper.io/iobroker-community-adapters/ioBroker.landroid.svg)](https://greenkeeper.io/)
 
 
 ## A Worx Landroid adapter for ioBroker

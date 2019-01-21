@@ -1,8 +1,8 @@
 {
-  "IP": "IP-adres van de Worx Landroid grasmaaier",
-  "Intervall": "Query-interval in seconden",
-  "Settings": "instellingen",
-  "WORX Landroid adapter settings": "WORX Landroid-adapterinstellingen",
-  "on save adapter restarts with new config immediately": "on save-adapter wordt onmiddellijk opnieuw opgestart met nieuwe config",
-  "pinCode": "Viercijferige pincode van grasmaaier"
+    "IP": "IP-adres van de Worx Landroid grasmaaier",
+    "Intervall": "Query-interval in seconden",
+    "Settings": "instellingen",
+    "WORX Landroid adapter settings": "WORX Landroid-adapterinstellingen",
+    "on save adapter restarts with new config immediately": "on save-adapter wordt onmiddellijk opnieuw opgestart met nieuwe config",
+    "pinCode": "Viercijferige pincode van grasmaaier"
 }
