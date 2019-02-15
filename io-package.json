@@ -112,18 +112,18 @@
                 "zh-cn": "初始版本"
             }
         },
-        "title": "WORX Landroid adapter",
+        "title": "WORX Landroid",
         "titleLang": {
-            "en": "Worx Landroid mower Adapter",
-            "de": "Worx Landroid Rasenmäher Adapter",
-            "ru": "Worx Landroid драйвер как образец",
-            "pt": "Worx Landroid cortador de grama",
-            "it": "Adattatore per tagliaerba Landro Worx",
-            "pl": "Kosiarkarka Worx Landroid Adapter",
-            "fr": "Adaptateur tondeuse Worx Landroid",
-            "es": "Adaptador de cortacésped Worx Landroid",
-            "nl": "Worx Landroid maaier adapter",
-            "zh-cn": "Worx Landroid割草机适配器"
+            "en": "Worx Landroid mower",
+            "de": "Worx Landroid Rasenmäher",
+            "ru": "Газонокосилка Worx Landroid",
+            "pt": "Cortador de grama Worx Landroid",
+            "it": "Tosaerba Worx Landroid",
+            "pl": "Kosiarka do trawy Worx Landroid",
+            "fr": "Tondeuse à gazon Worx Landroid",
+            "es": "Cortacésped WORX Landroid",
+            "nl": "Worx Landroid grasmaaier",
+            "zh-cn": "Worx Landroid割草機"
         },
         "desc": {
             "en": "This is an ioBroker adapter for your Worx Landroid mowing machine. It have been tested with a Landroid WG796E.",
