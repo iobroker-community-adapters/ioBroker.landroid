@@ -20,14 +20,14 @@
     "url": "https://github.com/iobroker-community-adapters/ioBroker.landroid"
   },
   "dependencies": {
-    "rss-parser": "^3.6.0"
+    "rss-parser": "^3.6.0",
+    "@iobroker/adapter-core": "^1.0.3"
   },
   "devDependencies": {
     "gulp": "^4.0.0",
     "chai": "^4.1.2",
     "mocha": "^6.0.2",
-    "axios": "^0.18.0",
-    "@iobroker/adapter-core": "^1.0.3"
+    "axios": "^0.18.0"
   },
   "main": "main.js",
   "scripts": {
