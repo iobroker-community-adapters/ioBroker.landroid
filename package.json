@@ -21,7 +21,7 @@
   },
   "dependencies": {
     "rss-parser": "^3.6.0",
-    "@iobroker/adapter-core": "^1.0.3"
+    "@iobroker/adapter-core": "^2.6.2"
   },
   "devDependencies": {
     "gulp": "^4.0.0",
