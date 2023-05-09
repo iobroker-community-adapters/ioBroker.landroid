@@ -20,7 +20,7 @@
     "url": "https://github.com/iobroker-community-adapters/ioBroker.landroid"
   },
   "dependencies": {
-    "rss-parser": "^3.6.0",
+    "rss-parser": "^3.13.0",
     "@iobroker/adapter-core": "^2.6.8"
   },
   "devDependencies": {
